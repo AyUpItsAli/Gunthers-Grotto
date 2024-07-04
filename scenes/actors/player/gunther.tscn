@@ -23,7 +23,6 @@ texture = ExtResource("1_gtpxc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_sja3d")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Health" parent="." instance=ExtResource("3_rn0eu")]
 

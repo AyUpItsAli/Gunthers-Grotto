@@ -60,7 +60,6 @@ anim_player = NodePath("AnimationPlayer")
 state_chart = NodePath("StateChart")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.137255, 0.67451, 0.807843, 1)
 scale = Vector2(0.005, 0.005)
 texture = ExtResource("2_qxlvt")
 

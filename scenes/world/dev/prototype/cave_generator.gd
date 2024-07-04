@@ -98,9 +98,8 @@ extends Node
 	set(new_value):
 		noise_edge_width = new_value
 		redraw()
-
-var rng: RandomNumberGenerator
-var noise: FastNoiseLite
+@export_group("Features")
+@export var features: Array[Feature]
 
 var cave_width: int
 var cave_height: int
@@ -108,6 +107,10 @@ var start_x: int
 var end_x: int
 var start_y: int
 var end_y: int
+
+var rng: RandomNumberGenerator
+var noise: FastNoiseLite
+var context: LevelContext
 
 var player_spawn_pos: Vector2
 var exit_spawn_pos: Vector2
@@ -154,16 +157,29 @@ func generate():
 	noise.fractal_lacunarity = noise_lacunarity
 	noise.fractal_ping_pong_strength = noise_ping_pong_strength
 	
+	# Context Setup
+	context = LevelContext.new()
+	context.tile_map = tile_map
+	context.ground_layer = ground_layer
+	context.wall_layer = wall_layer
+	context.cave_width = cave_width
+	context.cave_height = cave_height
+	context.start_x = start_x
+	context.end_x = end_x
+	context.start_y = start_y
+	context.end_y = end_y
+	context.rng = rng
+	
 	# Generate Terrain
 	generate_wall_layer()
 	generate_ground_layer()
 	
-	# Spawn Features
-	player_spawn_pos = get_random_unoccupied_pos()
-	exit_spawn_pos = get_random_unoccupied_pos()
-	
-	# Notify listeners
 	if not Engine.is_editor_hint():
+		# Spawning
+		spawn_features()
+		player_spawn_pos = context.get_random_unoccupied_pos()
+		exit_spawn_pos = context.get_random_unoccupied_pos()
+		# Notify listeners
 		cave_generated.emit()
 
 func clear_cave():
@@ -178,7 +194,7 @@ func generate_ground_layer():
 	for x in range(start_x, end_x + 1):
 		for y in range(start_y, end_y + 1):
 			var tile_pos = Vector2i(x, y)
-			if is_tile_empty(tile_pos):
+			if context.is_tile_empty(tile_pos):
 				tiles.append(tile_pos)
 	
 	tile_map.set_cells_terrain_connect(ground_layer, tiles, ground_terrain_set, ground_terrain)
@@ -207,18 +223,8 @@ func generate_wall_layer():
 	
 	tile_map.set_cells_terrain_connect(wall_layer, tiles, wall_terrain_set, wall_terrain)
 
-func is_tile_empty(tile_pos: Vector2i) -> bool:
-	return tile_map.get_cell_source_id(wall_layer, tile_pos) == -1
-
-func get_random_tile() -> Vector2i:
-	return Vector2i(rng.randi_range(start_x, end_x), rng.randi_range(start_y, end_y))
-
-func get_random_empty_tile() -> Vector2i:
-	var tile = get_random_tile()
-	while not is_tile_empty(tile):
-		tile = get_random_tile()
-	return tile
-
-func get_random_unoccupied_pos() -> Vector2:
-	var empty_tile = get_random_empty_tile()
-	return tile_map.map_to_local(empty_tile)
+func spawn_features():
+	for feature in Data.World.get_ordered_features():
+		if not feature in features:
+			continue
+		feature.apply(context)

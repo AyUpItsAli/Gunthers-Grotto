@@ -13,7 +13,6 @@ extends Node2D
 @export var scene_player: PackedScene
 @export var scene_camera: PackedScene
 @export var scene_exit: PackedScene
-@export var scene_enemy: PackedScene
 
 var player: Gunther
 var camera: Camera
@@ -38,16 +37,6 @@ func _on_cave_generated():
 	player = scene_player.instantiate()
 	player.position = cave_generator.player_spawn_pos
 	tile_map.add_child(player)
-	
-	# Enemies
-	var pos = cave_generator.get_random_empty_tile()
-	for offset in [Vector2i.ZERO, Vector2i.UP, Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT]: #]:#
-		var tile = pos + offset
-		if cave_generator.is_tile_empty(tile):
-			var enemy: CharacterBody2D = scene_enemy.instantiate()
-			enemy.position = tile_map.map_to_local(tile)
-			enemy.target = player
-			tile_map.add_child(enemy)
 
 	# Camera
 	camera = scene_camera.instantiate()

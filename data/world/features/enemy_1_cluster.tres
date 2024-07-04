@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyCluster" load_steps=3 format=3 uid="uid://cjtwvrcqvbhyi"]
+
+[ext_resource type="PackedScene" uid="uid://cfa6joyhm2ntb" path="res://scenes/actors/enemies/enemy_1.tscn" id="1_ix7xh"]
+[ext_resource type="Script" path="res://models/world/features/enemy_cluster.gd" id="1_uofvx"]
+
+[resource]
+script = ExtResource("1_uofvx")
+enemy_scene = ExtResource("1_ix7xh")
+color = Color(1, 0.0627451, 0.0392157, 1)
+id = "enemy_1_cluster"
+dependencies = Array[String](["enemy_2_cluster", "enemy_3_cluster"])

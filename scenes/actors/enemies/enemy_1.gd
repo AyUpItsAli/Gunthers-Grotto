@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var max_speed: float = 70
+@export var max_speed: float = 85
 @export var steering_force: float = 0.1
 @export var rotation_weight: float = 0.05
 @export_category("Nodes")
