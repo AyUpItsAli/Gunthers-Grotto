@@ -154,13 +154,15 @@ func generate():
 	noise.fractal_lacunarity = noise_lacunarity
 	noise.fractal_ping_pong_strength = noise_ping_pong_strength
 	
-	# Generate
+	# Generate Terrain
 	generate_wall_layer()
 	generate_ground_layer()
 	
+	# Spawn Features
 	player_spawn_pos = get_random_unoccupied_pos()
 	exit_spawn_pos = get_random_unoccupied_pos()
 	
+	# Notify listeners
 	if not Engine.is_editor_hint():
 		cave_generated.emit()
 

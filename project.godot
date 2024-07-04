@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Gunthers-Grotto"
+config/name="Gunther's Grotto"
 run/main_scene="res://scenes/world/dev/prototype/prototype.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://icon.png"
 
 [debug]
 

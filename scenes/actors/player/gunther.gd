@@ -12,13 +12,6 @@ func _physics_process(_delta):
 	velocity = velocity.move_toward(direction * max_speed, acceleration)
 	move_and_slide()
 
-func _on_health_depleted():
-	die()
-
-func die():
-	died.emit()
-	queue_free()
-
 func _on_hurtbox_hit():
 	var color_before = sprite.modulate
 	sprite.modulate = Color.RED
@@ -28,3 +21,10 @@ func _on_hurtbox_hit():
 
 func _on_hurtbox_immunity_ended():
 	sprite.modulate.a = 1
+
+func _on_health_depleted():
+	die()
+
+func die():
+	died.emit()
+	queue_free()
