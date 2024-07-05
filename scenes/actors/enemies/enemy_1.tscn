@@ -10,8 +10,9 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="8_flu7j"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="9_vui0w"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4cgi3"]
-radius = 4.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x721j"]
+radius = 1.0
+height = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hfwcs"]
 radius = 120.0
@@ -60,15 +61,18 @@ anim_player = NodePath("AnimationPlayer")
 state_chart = NodePath("StateChart")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
 scale = Vector2(0.005, 0.005)
 texture = ExtResource("2_qxlvt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_4cgi3")
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_x721j")
 debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="SightArea" type="Area2D" parent="."]
 visible = false
+position = Vector2(0, -3)
 collision_layer = 0
 collision_mask = 2
 
@@ -78,6 +82,7 @@ debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="SightLine" type="RayCast2D" parent="."]
 visible = false
+position = Vector2(0, -3)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 15.0
@@ -90,6 +95,7 @@ debug_path_custom_point_size = 1.0
 [node name="ContextMap" parent="." instance=ExtResource("3_61owt")]
 
 [node name="Hitbox" parent="." instance=ExtResource("4_o3dir")]
+position = Vector2(0, -3)
 collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Hitbox"]
