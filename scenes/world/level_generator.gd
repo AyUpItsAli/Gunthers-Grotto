@@ -38,15 +38,17 @@ extends Node
 @export_group("Level")
 @export_range(0, 200) var min_size: int = 50:
 	set(new_value):
-		min_size = new_value
-		if min_size > max_size:
+		if new_value > max_size:
 			min_size = max_size
+		else:
+			min_size = new_value
 		redraw()
 @export_range(0, 200) var max_size: int = 100:
 	set(new_value):
-		max_size = new_value
-		if max_size < min_size:
+		if new_value < min_size:
 			max_size = min_size
+		else:
+			max_size = new_value
 		redraw()
 @export var level_seed: String = "gunther":
 	set(new_value):
