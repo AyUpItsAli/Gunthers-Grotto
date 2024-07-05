@@ -7,14 +7,29 @@ var ground_layer: int
 var wall_layer: int
 
 # Dimensions
-var cave_width: int
-var cave_height: int
+var width: int
+var height: int
 var start_x: int
 var end_x: int
 var start_y: int
 var end_y: int
 
+# Other
+var biome: Biome
 var rng: RandomNumberGenerator
+
+func _init(level_generator: LevelGenerator):
+	tile_map = level_generator.tile_map
+	ground_layer = level_generator.ground_layer
+	wall_layer = level_generator.wall_layer
+	width = level_generator.width
+	height = level_generator.height
+	start_x = level_generator.start_x
+	end_x = level_generator.end_x
+	start_y = level_generator.start_y
+	end_y = level_generator.end_y
+	biome = level_generator.biome
+	rng = level_generator.rng
 
 func is_tile_empty(tile_pos: Vector2i) -> bool:
 	return tile_map.get_cell_source_id(wall_layer, tile_pos) == -1
