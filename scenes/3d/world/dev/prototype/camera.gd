@@ -10,9 +10,12 @@ func _physics_process(_delta):
 	if not target or target.is_queued_for_deletion():
 		return
 	position.x = lerp(position.x, target.position.x, smooth_weight)
-	position.z = lerp(position.z, target.position.z + z_offset, smooth_weight)
-	position.y = lerp(position.y, target.position.y + y_offset, smooth_weight)
-	if z_offset == 0:
-		rotation.x = deg_to_rad(-90)
-	else:
-		look_at(Vector3(position.x, position.y - y_offset, position.z - z_offset))
+	position.z = lerp(position.z, target.position.z + 10, smooth_weight)
+	position.y = lerp(position.y, target.position.y + 10, smooth_weight)
+	#position.x = lerp(position.x, target.position.x, smooth_weight)
+	#position.z = lerp(position.z, target.position.z + z_offset, smooth_weight)
+	#position.y = lerp(position.y, target.position.y + y_offset, smooth_weight)
+	#if z_offset == 0:
+		#rotation.x = deg_to_rad(-90)
+	#else:
+		#look_at(Vector3(position.x, position.y - y_offset, position.z - z_offset))

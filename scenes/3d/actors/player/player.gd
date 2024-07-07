@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-@export var max_speed: float = 10
-@export var acceleration: float = 1
+@export var max_speed: float = 5
+@export var acceleration: float = 0.5
 
 func _physics_process(_delta):
 	var direction_2d = Input.get_vector("left", "right", "up", "down")
