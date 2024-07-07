@@ -9,3 +9,4 @@ func _physics_process(_delta):
 	if not target or target.is_queued_for_deletion():
 		return
 	global_position = global_position.lerp(target.global_position, smooth_weight)
+	

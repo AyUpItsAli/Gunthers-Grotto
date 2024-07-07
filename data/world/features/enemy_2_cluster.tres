@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyCluster" load_steps=3 format=3 uid="uid://xon8qvl2enbf"]
 
-[ext_resource type="PackedScene" uid="uid://cfa6joyhm2ntb" path="res://scenes/actors/enemies/enemy_1.tscn" id="1_v21sw"]
+[ext_resource type="PackedScene" uid="uid://cfa6joyhm2ntb" path="res://scenes/2d/actors/enemies/enemy_1.tscn" id="1_v21sw"]
 [ext_resource type="Script" path="res://models/world/features/enemy_cluster.gd" id="1_ym3ci"]
 
 [resource]

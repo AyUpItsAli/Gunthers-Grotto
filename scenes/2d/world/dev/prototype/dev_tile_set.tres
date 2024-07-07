@@ -1,13 +1,13 @@
 [gd_resource type="TileSet" load_steps=7 format=3 uid="uid://c6chacedlp27r"]
 
-[ext_resource type="Texture2D" uid="uid://bvech37yp02x" path="res://scenes/world/dev/prototype/dev_walls_tile_set.png" id="1_fdcqu"]
-[ext_resource type="Texture2D" uid="uid://cwjtwbt5yihgl" path="res://scenes/world/dev/prototype/dev_ground_tile_set.png" id="2_2u0by"]
+[ext_resource type="Texture2D" uid="uid://bvech37yp02x" path="res://scenes/2d/world/dev/prototype/dev_walls_tile_set.png" id="1_ct6lm"]
+[ext_resource type="Texture2D" uid="uid://cwjtwbt5yihgl" path="res://scenes/2d/world/dev/prototype/dev_ground_tile_set.png" id="2_4fw3y"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_6umk5"]
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sixc1"]
-texture = ExtResource("1_fdcqu")
+texture = ExtResource("1_ct6lm")
 texture_region_size = Vector2i(16, 32)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -8)
@@ -588,7 +588,7 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f6uoa"]
-texture = ExtResource("2_2u0by")
+texture = ExtResource("2_4fw3y")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0

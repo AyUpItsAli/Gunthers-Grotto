@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://7s42v3mwjo5f"]
+
+[ext_resource type="PackedScene" uid="uid://bjid6eef6piwu" path="res://scenes/3d/actors/player/player.tscn" id="1_dj6yu"]
+[ext_resource type="PackedScene" uid="uid://2id4am2unkk5" path="res://scenes/3d/objects/cube.tscn" id="2_hnpf5"]
+[ext_resource type="Script" path="res://scenes/3d/world/dev/prototype/camera.gd" id="3_t4lx4"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4prft"]
+size = Vector2(20, 20)
+
+[node name="Prototype" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.683013, 0.183013, 0, 0.258819, 0.965926, -0.707107, -0.683013, 0.183013, 0, 0, 0)
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="Plane" type="MeshInstance3D" parent="World"]
+mesh = SubResource("PlaneMesh_4prft")
+skeleton = NodePath("../..")
+
+[node name="Player" parent="World" instance=ExtResource("1_dj6yu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Cube" parent="World" instance=ExtResource("2_hnpf5")]
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+projection = 1
+size = 16.0
+far = 40.0
+script = ExtResource("3_t4lx4")
+target = NodePath("../World/Player")

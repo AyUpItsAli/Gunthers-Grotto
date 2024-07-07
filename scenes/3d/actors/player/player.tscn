@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjid6eef6piwu"]
+
+[ext_resource type="Script" path="res://scenes/3d/actors/player/player.gd" id="1_lcjhu"]
+[ext_resource type="Texture2D" uid="uid://cvr650km2enip" path="res://assets/player.png" id="1_qy7ny"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_888v2"]
+height = 1.0
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_lcjhu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_888v2")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+pixel_size = 0.0625
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_qy7ny")

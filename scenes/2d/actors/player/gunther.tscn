@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://crr2w7i3tmktf"]
 
 [ext_resource type="Texture2D" uid="uid://bbve78u03ju8s" path="res://assets/circle.png" id="1_gtpxc"]
-[ext_resource type="Script" path="res://scenes/actors/player/gunther.gd" id="1_ssqeh"]
-[ext_resource type="PackedScene" uid="uid://2fyfvwl4vuil" path="res://scenes/components/health.tscn" id="3_rn0eu"]
-[ext_resource type="PackedScene" uid="uid://b5swf3mhncjin" path="res://scenes/components/hurtbox.tscn" id="4_nd1bc"]
+[ext_resource type="Script" path="res://scenes/2d/actors/player/gunther.gd" id="1_ssqeh"]
+[ext_resource type="PackedScene" uid="uid://2fyfvwl4vuil" path="res://scenes/2d/components/health.tscn" id="3_rn0eu"]
+[ext_resource type="PackedScene" uid="uid://b5swf3mhncjin" path="res://scenes/2d/components/hurtbox.tscn" id="4_nd1bc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w4410"]
 radius = 2.0

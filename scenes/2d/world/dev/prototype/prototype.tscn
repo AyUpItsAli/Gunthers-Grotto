@@ -1,13 +1,13 @@
 [gd_scene load_steps=10 format=3 uid="uid://dedn3sae35qvc"]
 
-[ext_resource type="Script" path="res://scenes/world/dev/prototype/prototype.gd" id="1_7sgbb"]
-[ext_resource type="PackedScene" uid="uid://crr2w7i3tmktf" path="res://scenes/actors/player/gunther.tscn" id="2_7w5a4"]
-[ext_resource type="Script" path="res://scenes/world/level_generator.gd" id="2_i50v1"]
-[ext_resource type="PackedScene" uid="uid://cdohbvjf3lc5h" path="res://scenes/actors/player/player_camera.tscn" id="3_nmucv"]
-[ext_resource type="PackedScene" uid="uid://cur6or34cd1g6" path="res://scenes/world/dev/prototype/exit.tscn" id="4_oxwwc"]
+[ext_resource type="Script" path="res://scenes/2d/world/dev/prototype/prototype.gd" id="1_7sgbb"]
+[ext_resource type="PackedScene" uid="uid://crr2w7i3tmktf" path="res://scenes/2d/actors/player/gunther.tscn" id="2_7w5a4"]
+[ext_resource type="Script" path="res://scenes/2d/world/level_generator.gd" id="2_i50v1"]
+[ext_resource type="PackedScene" uid="uid://cdohbvjf3lc5h" path="res://scenes/2d/actors/player/player_camera.tscn" id="3_nmucv"]
+[ext_resource type="PackedScene" uid="uid://cur6or34cd1g6" path="res://scenes/2d/world/dev/prototype/exit.tscn" id="4_oxwwc"]
 [ext_resource type="Resource" uid="uid://g32r1uw0otsr" path="res://data/world/biomes/prototype.tres" id="6_uwu06"]
-[ext_resource type="TileSet" uid="uid://c6chacedlp27r" path="res://scenes/world/dev/prototype/dev_tile_set.tres" id="7_1hn8t"]
-[ext_resource type="PackedScene" uid="uid://ckfilx7kshp3h" path="res://scenes/world/dev/world_camera.tscn" id="10_vjbsb"]
+[ext_resource type="TileSet" uid="uid://c6chacedlp27r" path="res://scenes/2d/world/dev/prototype/dev_tile_set.tres" id="7_1hn8t"]
+[ext_resource type="PackedScene" uid="uid://ckfilx7kshp3h" path="res://scenes/2d/world/dev/world_camera.tscn" id="10_vjbsb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sija8"]
 font_size = 4
