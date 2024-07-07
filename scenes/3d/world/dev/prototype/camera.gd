@@ -1,7 +1,8 @@
+@tool
 extends Camera3D
 
 @export var target: Node3D
-@export var height: float = 7
+@export var height: float = 6
 @export var distance: float = 10
 @export var smooth_weight: float = 0.1
 
