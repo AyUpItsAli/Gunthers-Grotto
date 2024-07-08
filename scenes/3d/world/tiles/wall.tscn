@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cymn42ia8asw6" path="res://scenes/3d/world/tiles/dev_wall_tile_top.png" id="1_kv4d6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2k7m2"]
+size = Vector3(1, 2, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8k2t7"]
 albedo_texture = ExtResource("1_kv4d6")
@@ -12,13 +13,14 @@ texture_filter = 0
 [sub_resource type="BoxMesh" id="BoxMesh_fhq0r"]
 lightmap_size_hint = Vector2i(14, 21)
 material = SubResource("StandardMaterial3D_8k2t7")
+size = Vector3(1, 2, 1)
 
 [node name="Wall" type="StaticBody3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_2k7m2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("BoxMesh_fhq0r")
