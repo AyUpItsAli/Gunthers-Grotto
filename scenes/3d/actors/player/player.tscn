@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjid6eef6piwu"]
+[gd_scene load_steps=8 format=3 uid="uid://bjid6eef6piwu"]
 
 [ext_resource type="Script" path="res://scenes/3d/actors/player/player.gd" id="1_lcjhu"]
 [ext_resource type="Texture2D" uid="uid://cvr650km2enip" path="res://assets/player.png" id="1_qy7ny"]
@@ -8,6 +8,13 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ln1i1"]
 radius = 0.4
 height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7wn1a"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.337255)
+
+[sub_resource type="BoxMesh" id="BoxMesh_x7l4p"]
+material = SubResource("StandardMaterial3D_7wn1a")
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("hand", "pickaxe")]
 script = ExtResource("1_lcjhu")
@@ -32,3 +39,8 @@ transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 
 transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0, 0, 0)
 offset = Vector2(4.5, 4.5)
 texture = ExtResource("3_uvcs0")
+
+[node name="HitboxExample" type="MeshInstance3D" parent="Hand/Pickaxe"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -0.25)
+visible = false
+mesh = SubResource("BoxMesh_x7l4p")
