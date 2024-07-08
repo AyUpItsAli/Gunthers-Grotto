@@ -10,16 +10,19 @@ radius = 0.4
 height = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7wn1a"]
+render_priority = 1
 transparency = 1
 albedo_color = Color(1, 0, 0, 0.337255)
 
 [sub_resource type="BoxMesh" id="BoxMesh_x7l4p"]
 material = SubResource("StandardMaterial3D_7wn1a")
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("hand", "pickaxe")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("sprite", "hand", "pickaxe", "hitbox_pivot")]
 script = ExtResource("1_lcjhu")
+sprite = NodePath("Sprite")
 hand = NodePath("Hand")
 pickaxe = NodePath("Hand/Pickaxe")
+hitbox_pivot = NodePath("HitboxPivot")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -33,14 +36,16 @@ texture = ExtResource("1_qy7ny")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0.25)
 
 [node name="Pickaxe" type="Node3D" parent="Hand"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0.5)
+transform = Transform3D(-0.707107, 0.707107, 0, -0.707107, -0.707107, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="Sprite" parent="Hand/Pickaxe" instance=ExtResource("2_ingga")]
-transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0, 0, 0)
 offset = Vector2(4.5, 4.5)
 texture = ExtResource("3_uvcs0")
 
-[node name="HitboxExample" type="MeshInstance3D" parent="Hand/Pickaxe"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -0.25)
+[node name="HitboxPivot" type="Node3D" parent="."]
 visible = false
+
+[node name="HitboxMesh" type="MeshInstance3D" parent="HitboxPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.5)
 mesh = SubResource("BoxMesh_x7l4p")
+skeleton = NodePath("../../Hand/Pickaxe")
