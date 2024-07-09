@@ -6,9 +6,9 @@ extends SubViewportContainer
 	set(new_value):
 		_update_viewport = true
 		update_viewport()
+@export var foreshortening_correction: bool = true
 @export var viewport: SubViewport
 @export var camera: Camera3D
-@export var foreshortening_correction: bool = true
 
 func update_viewport():
 	if foreshortening_correction:

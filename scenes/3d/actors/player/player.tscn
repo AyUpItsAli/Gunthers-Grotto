@@ -10,7 +10,6 @@ radius = 0.4
 height = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7wn1a"]
-render_priority = 1
 transparency = 1
 albedo_color = Color(1, 0, 0, 0.337255)
 
@@ -33,10 +32,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 texture = ExtResource("1_qy7ny")
 
 [node name="Hand" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+visible = false
 
 [node name="Pickaxe" type="Node3D" parent="Hand"]
-transform = Transform3D(-0.707107, 0.707107, 0, -0.707107, -0.707107, 0, 0, 0, 1, 0, 0, 0.5)
+transform = Transform3D(0.707107, -0.707107, 0, -3.09086e-08, -3.09086e-08, -1, 0.707107, 0.707107, -4.37114e-08, 0, 0, 0.5)
 
 [node name="Sprite" parent="Hand/Pickaxe" instance=ExtResource("2_ingga")]
 offset = Vector2(4.5, 4.5)

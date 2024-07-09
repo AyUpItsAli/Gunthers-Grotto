@@ -27,11 +27,11 @@ func _physics_process(_delta):
 		hand.rotation_degrees.y = move_toward(hand.rotation_degrees.y, 360, 0.5)
 	
 	# Rotate the pickaxe to match the motion of the hand rotation
-	pickaxe.rotation_degrees.y = -hand.rotation_degrees.y
-	pickaxe.rotation_degrees.z = hand.rotation_degrees.y - 90 - 45
+	#pickaxe.rotation_degrees.y = -hand.rotation_degrees.y
+	#pickaxe.rotation_degrees.z = hand.rotation_degrees.y - 90 - 45
 	
 	# Render player sprite above pickaxe sprite if hand is behind player
 	# This is a work around for a bug todo with how Godot renders transparent meshes
-	sprite.render_priority = 1 if hand.rotation_degrees.y > 90 and hand.rotation_degrees.y < 270 else 0
+	#sprite.render_priority = 1 if hand.rotation_degrees.y > 90 and hand.rotation_degrees.y < 270 else 0
 	
 	hitbox_pivot.rotation_degrees = hand.rotation_degrees
