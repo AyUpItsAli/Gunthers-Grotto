@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://2id4am2unkk5"]
+
+[ext_resource type="Texture2D" uid="uid://bk0iqlglda0ea" path="res://scenes/world/tiles/dev_wall_tile_bottom.png" id="1_a1sis"]
+[ext_resource type="Texture2D" uid="uid://cymn42ia8asw6" path="res://scenes/world/tiles/dev_wall_tile_top.png" id="1_kv4d6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2k7m2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ura1"]
+albedo_texture = ExtResource("1_a1sis")
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_3jrpc"]
+material = SubResource("StandardMaterial3D_7ura1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26jrf"]
+albedo_texture = ExtResource("1_kv4d6")
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_vj67u"]
+material = SubResource("StandardMaterial3D_26jrf")
+orientation = 1
+
+[node name="Wall" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_2k7m2")
+
+[node name="MeshBottom" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.5)
+mesh = SubResource("QuadMesh_3jrpc")
+
+[node name="MeshTop" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("QuadMesh_vj67u")

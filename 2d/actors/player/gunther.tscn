@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://crr2w7i3tmktf"]
+
+[ext_resource type="Texture2D" uid="uid://bbve78u03ju8s" path="res://assets/circle.png" id="1_gtpxc"]
+[ext_resource type="Script" path="res://2d/actors/player/gunther.gd" id="1_ssqeh"]
+[ext_resource type="PackedScene" uid="uid://2fyfvwl4vuil" path="res://2d/components/health.tscn" id="3_rn0eu"]
+[ext_resource type="PackedScene" uid="uid://b5swf3mhncjin" path="res://2d/components/hurtbox.tscn" id="4_nd1bc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w4410"]
+radius = 2.0
+height = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l7dlj"]
+radius = 6.0
+
+[node name="Gunther" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
+collision_layer = 2
+script = ExtResource("1_ssqeh")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.12549, 0.796078, 0.447059, 1)
+position = Vector2(0, -6)
+scale = Vector2(0.008, 0.008)
+texture = ExtResource("1_gtpxc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.6)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_w4410")
+
+[node name="Health" parent="." instance=ExtResource("3_rn0eu")]
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("4_nd1bc")]
+position = Vector2(0, -6)
+collision_layer = 2
+health = NodePath("../Health")
+immunity_time = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_l7dlj")
+
+[connection signal="depleted" from="Health" to="." method="_on_health_depleted"]
+[connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
+[connection signal="immunity_ended" from="Hurtbox" to="." method="_on_hurtbox_immunity_ended"]

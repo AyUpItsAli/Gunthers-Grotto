@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://drn5n5w1fbbms"]
+
+[ext_resource type="Script" path="res://scenes/world/camera/topdown_viewport_container.gd" id="1_5jxvo"]
+
+[node name="TopdownViewportContainer" type="SubViewportContainer"]
+offset_top = -223.675
+offset_right = 1920.0
+offset_bottom = 856.325
+scale = Vector2(1, 1.41421)
+stretch = true
+script = ExtResource("1_5jxvo")

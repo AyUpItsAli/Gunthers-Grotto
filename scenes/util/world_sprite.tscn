@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bpx0qg2ulwy52"]
+
+[node name="WorldSprite" type="Sprite3D"]
+pixel_size = 0.0625
+texture_filter = 0
