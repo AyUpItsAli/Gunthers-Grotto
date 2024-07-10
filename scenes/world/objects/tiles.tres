@@ -7,4 +7,4 @@ script = ExtResource("1_5kwwk")
 base_folder = "res://scenes/world/objects/tiles"
 includes = Array[String](["**.tscn"])
 excludes = Array[String]([])
-paths = Array[String](["res://scenes/world/objects/tiles/wall.tscn"])
+paths = Array[String](["res://scenes/world/objects/tiles/wall_tile.tscn"])

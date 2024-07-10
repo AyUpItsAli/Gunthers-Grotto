@@ -3,9 +3,13 @@
 [ext_resource type="Script" path="res://scenes/world/camera/topdown_viewport_container.gd" id="1_5jxvo"]
 
 [node name="TopdownViewportContainer" type="SubViewportContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_top = -223.675
-offset_right = 1920.0
-offset_bottom = 856.325
+offset_bottom = -223.675
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(1, 1.41421)
 stretch = true
 script = ExtResource("1_5jxvo")

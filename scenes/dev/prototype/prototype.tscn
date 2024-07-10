@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bjid6eef6piwu" path="res://scenes/actors/player/player.tscn" id="1_dj6yu"]
 [ext_resource type="PackedScene" uid="uid://drn5n5w1fbbms" path="res://scenes/world/camera/topdown_viewport_container.tscn" id="1_yl4ty"]
-[ext_resource type="PackedScene" uid="uid://2id4am2unkk5" path="res://scenes/world/objects/tiles/wall.tscn" id="2_hnpf5"]
+[ext_resource type="PackedScene" uid="uid://2id4am2unkk5" path="res://scenes/world/objects/tiles/wall_tile.tscn" id="2_hnpf5"]
 [ext_resource type="PackedScene" uid="uid://dy7h7r4s7mp46" path="res://scenes/world/camera/player_camera.tscn" id="3_trwpy"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_c41w2"]
@@ -14,6 +14,8 @@ font_size = 32
 [node name="Prototype" type="Node3D"]
 
 [node name="TopdownViewportContainer" parent="." instance=ExtResource("1_yl4ty")]
+offset_top = -223.675
+offset_bottom = -223.675
 scale = Vector2(1, 1.41421)
 
 [node name="SubViewport" type="SubViewport" parent="TopdownViewportContainer"]
