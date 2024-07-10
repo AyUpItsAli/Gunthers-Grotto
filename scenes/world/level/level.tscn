@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjuryeh8ettom"]
+[gd_scene load_steps=8 format=3 uid="uid://bjuryeh8ettom"]
 
-[ext_resource type="PackedScene" uid="uid://drn5n5w1fbbms" path="res://scenes/world/camera/topdown_viewport_container.tscn" id="1_i8q56"]
-[ext_resource type="PackedScene" uid="uid://dy7h7r4s7mp46" path="res://scenes/world/camera/player_camera.tscn" id="2_wv1q2"]
-[ext_resource type="PackedScene" uid="uid://bjid6eef6piwu" path="res://scenes/actors/player/player.tscn" id="3_ff7g8"]
+[ext_resource type="PackedScene" uid="uid://drn5n5w1fbbms" path="res://scenes/world/camera/topdown_viewport_container.tscn" id="1_n3ch6"]
+[ext_resource type="PackedScene" uid="uid://dy7h7r4s7mp46" path="res://scenes/world/camera/player_camera.tscn" id="2_dfhiy"]
+[ext_resource type="PackedScene" uid="uid://bjid6eef6piwu" path="res://scenes/actors/player/player.tscn" id="3_5u4i6"]
+[ext_resource type="Script" path="res://scenes/world/level/level_generator.gd" id="4_lx15o"]
+[ext_resource type="Script" path="res://scenes/world/level/level_grid.gd" id="5_wfkya"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1bggo"]
 size = Vector2(20, 20)
@@ -12,7 +14,10 @@ font_size = 32
 
 [node name="Level" type="Node"]
 
-[node name="TopdownViewportContainer" parent="." instance=ExtResource("1_i8q56")]
+[node name="LevelGenerator" type="Node" parent="."]
+script = ExtResource("4_lx15o")
+
+[node name="TopdownViewportContainer" parent="." instance=ExtResource("1_n3ch6")]
 scale = Vector2(1, 1.41421)
 
 [node name="SubViewport" type="SubViewport" parent="TopdownViewportContainer"]
@@ -28,13 +33,15 @@ transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75
 [node name="Plane" type="MeshInstance3D" parent="TopdownViewportContainer/SubViewport/World"]
 mesh = SubResource("PlaneMesh_1bggo")
 
-[node name="PlayerCamera" parent="TopdownViewportContainer/SubViewport/World" node_paths=PackedStringArray("target") instance=ExtResource("2_wv1q2")]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 10)
-target = NodePath("../Player")
+[node name="PlayerCamera" parent="TopdownViewportContainer/SubViewport/World" node_paths=PackedStringArray("target") instance=ExtResource("2_dfhiy")]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 30, 30)
+size = 30.0
+target = NodePath("../LevelGrid")
 
-[node name="Player" parent="TopdownViewportContainer/SubViewport/World" instance=ExtResource("3_ff7g8")]
+[node name="Player" parent="TopdownViewportContainer/SubViewport/World" instance=ExtResource("3_5u4i6")]
 
 [node name="LevelGrid" type="Node3D" parent="TopdownViewportContainer/SubViewport/World"]
+script = ExtResource("5_wfkya")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

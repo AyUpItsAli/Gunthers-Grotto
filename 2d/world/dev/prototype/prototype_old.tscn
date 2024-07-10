@@ -1,25 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://dedn3sae35qvc"]
+[gd_scene load_steps=4 format=3 uid="uid://dedn3sae35qvc"]
 
 [ext_resource type="Script" path="res://2d/world/dev/prototype/prototype.gd" id="1_7sgbb"]
-[ext_resource type="Script" path="res://2d/world/level_generator.gd" id="2_i50v1"]
-[ext_resource type="Resource" uid="uid://g32r1uw0otsr" path="res://data/world/biomes/prototype.tres" id="6_uwu06"]
 [ext_resource type="TileSet" uid="uid://c6chacedlp27r" path="res://2d/world/dev/prototype/dev_tile_set.tres" id="7_1hn8t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sija8"]
 font_size = 4
 
-[node name="Prototype" type="Node2D" node_paths=PackedStringArray("level_generator", "tile_map", "debug_canvas", "seed_label", "new_seed_button")]
+[node name="Prototype" type="Node2D" node_paths=PackedStringArray("tile_map", "debug_canvas", "seed_label", "new_seed_button")]
 script = ExtResource("1_7sgbb")
-level_generator = NodePath("LevelGenerator")
 tile_map = NodePath("TileMap")
 debug_canvas = NodePath("DebugCanvas")
 seed_label = NodePath("DebugCanvas/VBoxContainer/SeedLabel")
 new_seed_button = NodePath("DebugCanvas/VBoxContainer/NewSeedBtn")
-
-[node name="LevelGenerator" type="Node" parent="." node_paths=PackedStringArray("tile_map")]
-script = ExtResource("2_i50v1")
-tile_map = NodePath("../TileMap")
-biome = ExtResource("6_uwu06")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("7_1hn8t")
@@ -57,5 +49,4 @@ theme_override_font_sizes/font_size = 4
 text = "Need Seed
 "
 
-[connection signal="level_generated" from="LevelGenerator" to="." method="_on_level_generator_level_generated"]
 [connection signal="pressed" from="DebugCanvas/VBoxContainer/NewSeedBtn" to="." method="_on_new_seed_button_pressed"]
