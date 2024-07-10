@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LevelTileSet" load_steps=3 format=3 uid="uid://cxigp68dcfmy5"]
+
+[ext_resource type="Script" path="res://models/world/level_tile_set.gd" id="1_yehjg"]
+[ext_resource type="Texture2D" uid="uid://c6kx4sgtltw8l" path="res://scenes/world/objects/tiles/textures/dev_walls_tile_set.png" id="2_jpk3x"]
+
+[resource]
+script = ExtResource("1_yehjg")
+texture = ExtResource("2_jpk3x")
+wall_height = 1

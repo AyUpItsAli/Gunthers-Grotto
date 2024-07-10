@@ -36,10 +36,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 visible = false
 
 [node name="Pickaxe" type="Node3D" parent="Hand"]
-transform = Transform3D(0.707107, -0.707107, 0, -3.09086e-08, -3.09086e-08, -1, 0.707107, 0.707107, -4.37114e-08, 0, 0, 0.5)
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0, 0, 0.5)
 
 [node name="Sprite" parent="Hand/Pickaxe" instance=ExtResource("2_ingga")]
 offset = Vector2(4.5, 4.5)
+axis = 1
 texture = ExtResource("3_uvcs0")
 
 [node name="HitboxPivot" type="Node3D" parent="."]

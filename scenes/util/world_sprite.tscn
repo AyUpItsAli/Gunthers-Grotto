@@ -2,4 +2,6 @@
 
 [node name="WorldSprite" type="Sprite3D"]
 pixel_size = 0.0625
+double_sided = false
+alpha_cut = 1
 texture_filter = 0

@@ -14,8 +14,6 @@ font_size = 32
 [node name="Prototype" type="Node3D"]
 
 [node name="TopdownViewportContainer" parent="." instance=ExtResource("1_yl4ty")]
-offset_top = -223.675
-offset_bottom = -223.675
 scale = Vector2(1, 1.41421)
 
 [node name="SubViewport" type="SubViewport" parent="TopdownViewportContainer"]
@@ -27,7 +25,7 @@ render_target_update_mode = 4
 transform = Transform3D(0.866026, -0.433013, 0.25, 0, 0.5, 0.866026, -0.5, -0.75, 0.433012, 0, 0, 0)
 
 [node name="PlayerCamera" parent="TopdownViewportContainer/SubViewport" node_paths=PackedStringArray("target") instance=ExtResource("3_trwpy")]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 1, 10, 10)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -0.0250162, 10, 10.7521)
 target = NodePath("../World/Player")
 
 [node name="World" type="Node3D" parent="TopdownViewportContainer/SubViewport"]
@@ -37,7 +35,7 @@ mesh = SubResource("PlaneMesh_c41w2")
 skeleton = NodePath("../../../..")
 
 [node name="Player" parent="TopdownViewportContainer/SubViewport/World" instance=ExtResource("1_dj6yu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0250162, 0, 0.752094)
 
 [node name="Walls" type="Node3D" parent="TopdownViewportContainer/SubViewport/World"]
 

@@ -17,6 +17,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+Globals="*res://globals/globals.gd"
 Data="*res://globals/data.gd"
 
 [debug]
