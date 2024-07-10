@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Gunther's Grotto"
-run/main_scene="res://scenes/dev/prototype/prototype_test.tscn"
+run/main_scene="res://scenes/world/level/level.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.png"
 

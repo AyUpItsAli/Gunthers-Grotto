@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjuryeh8ettom"]
+
+[ext_resource type="PackedScene" uid="uid://drn5n5w1fbbms" path="res://scenes/world/camera/topdown_viewport_container.tscn" id="1_i8q56"]
+[ext_resource type="PackedScene" uid="uid://dy7h7r4s7mp46" path="res://scenes/world/camera/player_camera.tscn" id="2_wv1q2"]
+[ext_resource type="PackedScene" uid="uid://bjid6eef6piwu" path="res://scenes/actors/player/player.tscn" id="3_ff7g8"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1bggo"]
+size = Vector2(20, 20)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6rcew"]
+font_size = 32
+
+[node name="Level" type="Node"]
+
+[node name="TopdownViewportContainer" parent="." instance=ExtResource("1_i8q56")]
+scale = Vector2(1, 1.41421)
+
+[node name="SubViewport" type="SubViewport" parent="TopdownViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="World" type="Node3D" parent="TopdownViewportContainer/SubViewport"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="TopdownViewportContainer/SubViewport/World"]
+transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75, 0.433013, 0, 0, 0)
+
+[node name="Plane" type="MeshInstance3D" parent="TopdownViewportContainer/SubViewport/World"]
+mesh = SubResource("PlaneMesh_1bggo")
+
+[node name="PlayerCamera" parent="TopdownViewportContainer/SubViewport/World" node_paths=PackedStringArray("target") instance=ExtResource("2_wv1q2")]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 10)
+target = NodePath("../Player")
+
+[node name="Player" parent="TopdownViewportContainer/SubViewport/World" instance=ExtResource("3_ff7g8")]
+
+[node name="LevelGrid" type="Node3D" parent="TopdownViewportContainer/SubViewport/World"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -234.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 123.0
+grow_horizontal = 0
+theme_override_constants/separation = 20
+
+[node name="SeedLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Seed: gunther"
+label_settings = SubResource("LabelSettings_6rcew")
+horizontal_alignment = 1
+
+[node name="NewSeedBtn" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "Need Seed
+"
