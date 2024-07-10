@@ -1,0 +1,147 @@
+[gd_scene load_steps=7 format=3 uid="uid://7s42v3mwjo5f"]
+
+[ext_resource type="PackedScene" uid="uid://drn5n5w1fbbms" path="res://scenes/world/camera/topdown_viewport_container.tscn" id="1_0uhsr"]
+[ext_resource type="PackedScene" uid="uid://dy7h7r4s7mp46" path="res://scenes/world/camera/player_camera.tscn" id="2_kx6tu"]
+[ext_resource type="PackedScene" uid="uid://bjid6eef6piwu" path="res://scenes/actors/player/player.tscn" id="3_yhuxg"]
+[ext_resource type="PackedScene" uid="uid://2id4am2unkk5" path="res://scenes/world/objects/wall_tile/wall_tile.tscn" id="4_a2la5"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_c41w2"]
+size = Vector2(20, 20)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7smr7"]
+font_size = 32
+
+[node name="PrototypeTest" type="Node3D"]
+
+[node name="TopdownViewportContainer" parent="." instance=ExtResource("1_0uhsr")]
+scale = Vector2(1, 1.41421)
+
+[node name="SubViewport" type="SubViewport" parent="TopdownViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="TopdownViewportContainer/SubViewport"]
+transform = Transform3D(0.866026, -0.433013, 0.25, 0, 0.5, 0.866026, -0.5, -0.75, 0.433012, 0, 0, 0)
+
+[node name="PlayerCamera" parent="TopdownViewportContainer/SubViewport" node_paths=PackedStringArray("target") instance=ExtResource("2_kx6tu")]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -0.0250162, 10, 10.7521)
+target = NodePath("../World/Player")
+
+[node name="World" type="Node3D" parent="TopdownViewportContainer/SubViewport"]
+
+[node name="Plane" type="MeshInstance3D" parent="TopdownViewportContainer/SubViewport/World"]
+mesh = SubResource("PlaneMesh_c41w2")
+skeleton = NodePath("../../../..")
+
+[node name="Player" parent="TopdownViewportContainer/SubViewport/World" instance=ExtResource("3_yhuxg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0250162, 0, 0.752094)
+
+[node name="Walls" type="Node3D" parent="TopdownViewportContainer/SubViewport/World"]
+
+[node name="WallTile" parent="TopdownViewportContainer/SubViewport/World/Walls" instance=ExtResource("4_a2la5")]
+
+[node name="WallTile2" parent="TopdownViewportContainer/SubViewport/World/Walls" node_paths=PackedStringArray("collision_shape", "sprite_top", "sprite_bottom") instance=ExtResource("4_a2la5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+collision_shape = NodePath("../WallTile/CollisionShape3D")
+sprite_top = NodePath("../WallTile/SpriteTop")
+sprite_bottom = NodePath("../WallTile/SpriteBottom")
+
+[node name="WallTile3" parent="TopdownViewportContainer/SubViewport/World/Walls" node_paths=PackedStringArray("collision_shape", "sprite_top", "sprite_bottom") instance=ExtResource("4_a2la5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+collision_shape = NodePath("../WallTile/CollisionShape3D")
+sprite_top = NodePath("../WallTile/SpriteTop")
+sprite_bottom = NodePath("../WallTile/SpriteBottom")
+
+[node name="WallTile4" parent="TopdownViewportContainer/SubViewport/World/Walls" node_paths=PackedStringArray("collision_shape", "sprite_top", "sprite_bottom") instance=ExtResource("4_a2la5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2)
+collision_shape = NodePath("../WallTile/CollisionShape3D")
+sprite_top = NodePath("../WallTile/SpriteTop")
+sprite_bottom = NodePath("../WallTile/SpriteBottom")
+
+[node name="WallTile5" parent="TopdownViewportContainer/SubViewport/World/Walls" node_paths=PackedStringArray("collision_shape", "sprite_top", "sprite_bottom") instance=ExtResource("4_a2la5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
+collision_shape = NodePath("../WallTile/CollisionShape3D")
+sprite_top = NodePath("../WallTile/SpriteTop")
+sprite_bottom = NodePath("../WallTile/SpriteBottom")
+
+[node name="WallTile6" parent="TopdownViewportContainer/SubViewport/World/Walls" node_paths=PackedStringArray("collision_shape", "sprite_top", "sprite_bottom") instance=ExtResource("4_a2la5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3)
+collision_shape = NodePath("../WallTile/CollisionShape3D")
+sprite_top = NodePath("../WallTile/SpriteTop")
+sprite_bottom = NodePath("../WallTile/SpriteBottom")
+
+[node name="WallTile7" parent="TopdownViewportContainer/SubViewport/World/Walls" node_paths=PackedStringArray("collision_shape", "sprite_top", "sprite_bottom") instance=ExtResource("4_a2la5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+collision_shape = NodePath("../WallTile/CollisionShape3D")
+sprite_top = NodePath("../WallTile/SpriteTop")
+sprite_bottom = NodePath("../WallTile/SpriteBottom")
+
+[node name="WallTile8" parent="TopdownViewportContainer/SubViewport/World/Walls" node_paths=PackedStringArray("collision_shape", "sprite_top", "sprite_bottom") instance=ExtResource("4_a2la5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3)
+collision_shape = NodePath("../WallTile/CollisionShape3D")
+sprite_top = NodePath("../WallTile/SpriteTop")
+sprite_bottom = NodePath("../WallTile/SpriteBottom")
+
+[node name="WallTile9" parent="TopdownViewportContainer/SubViewport/World/Walls" node_paths=PackedStringArray("collision_shape", "sprite_top", "sprite_bottom") instance=ExtResource("4_a2la5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2)
+collision_shape = NodePath("../WallTile/CollisionShape3D")
+sprite_top = NodePath("../WallTile/SpriteTop")
+sprite_bottom = NodePath("../WallTile/SpriteBottom")
+
+[node name="WallTile10" parent="TopdownViewportContainer/SubViewport/World/Walls" node_paths=PackedStringArray("collision_shape", "sprite_top", "sprite_bottom") instance=ExtResource("4_a2la5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -2)
+collision_shape = NodePath("../WallTile/CollisionShape3D")
+sprite_top = NodePath("../WallTile/SpriteTop")
+sprite_bottom = NodePath("../WallTile/SpriteBottom")
+
+[node name="WallTile11" parent="TopdownViewportContainer/SubViewport/World/Walls" node_paths=PackedStringArray("collision_shape", "sprite_top", "sprite_bottom") instance=ExtResource("4_a2la5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
+collision_shape = NodePath("../WallTile/CollisionShape3D")
+sprite_top = NodePath("../WallTile/SpriteTop")
+sprite_bottom = NodePath("../WallTile/SpriteBottom")
+
+[node name="WallTile12" parent="TopdownViewportContainer/SubViewport/World/Walls" node_paths=PackedStringArray("collision_shape", "sprite_top", "sprite_bottom") instance=ExtResource("4_a2la5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 2)
+collision_shape = NodePath("../WallTile/CollisionShape3D")
+sprite_top = NodePath("../WallTile/SpriteTop")
+sprite_bottom = NodePath("../WallTile/SpriteBottom")
+
+[node name="WallTile13" parent="TopdownViewportContainer/SubViewport/World/Walls" node_paths=PackedStringArray("collision_shape", "sprite_top", "sprite_bottom") instance=ExtResource("4_a2la5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
+collision_shape = NodePath("../WallTile/CollisionShape3D")
+sprite_top = NodePath("../WallTile/SpriteTop")
+sprite_bottom = NodePath("../WallTile/SpriteBottom")
+
+[node name="WallTile14" parent="TopdownViewportContainer/SubViewport/World/Walls" node_paths=PackedStringArray("collision_shape", "sprite_top", "sprite_bottom") instance=ExtResource("4_a2la5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 2)
+collision_shape = NodePath("../WallTile/CollisionShape3D")
+sprite_top = NodePath("../WallTile/SpriteTop")
+sprite_bottom = NodePath("../WallTile/SpriteBottom")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -234.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 123.0
+grow_horizontal = 0
+theme_override_constants/separation = 20
+
+[node name="SeedLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Seed: gunther"
+label_settings = SubResource("LabelSettings_7smr7")
+horizontal_alignment = 1
+
+[node name="NewSeedBtn" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "Need Seed
+"
