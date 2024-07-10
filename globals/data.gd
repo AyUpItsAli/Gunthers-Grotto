@@ -1,7 +1,7 @@
 extends Node
 
-const FEATURES: ResourceGroup = preload("res://data/features.tres")
-const BIOMES: ResourceGroup = preload("res://data/biomes.tres")
+const FEATURES: ResourceGroup = preload("res://data/world/features.tres")
+const BIOMES: ResourceGroup = preload("res://data/world/biomes.tres")
 
 func _ready():
 	Features.load_features()

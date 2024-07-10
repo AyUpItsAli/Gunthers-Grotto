@@ -1,7 +1,7 @@
 @tool
 extends StaticBody3D
 
-@export var tile_set: LevelTileSet:
+@export var tile_set: WallTileSet:
 	set(new_value):
 		if tile_set == new_value: return
 		if tile_set: tile_set.changed.disconnect(update_tile)

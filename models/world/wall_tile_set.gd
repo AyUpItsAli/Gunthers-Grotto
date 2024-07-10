@@ -1,5 +1,5 @@
 @tool
-class_name LevelTileSet
+class_name WallTileSet
 extends Resource
 
 @export var texture: Texture2D:
