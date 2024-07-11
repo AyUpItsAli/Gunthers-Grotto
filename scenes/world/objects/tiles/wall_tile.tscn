@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://2id4am2unkk5"]
 
-[ext_resource type="Script" path="res://scenes/world/objects/wall_tile/wall_tile.gd" id="1_r884f"]
+[ext_resource type="Script" path="res://scenes/world/objects/tiles/wall_tile.gd" id="1_r884f"]
 [ext_resource type="PackedScene" uid="uid://bpx0qg2ulwy52" path="res://scenes/util/world_sprite.tscn" id="3_eolwl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2k7m2"]

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://drn5n5w1fbbms" path="res://scenes/world/camera/topdown_viewport_container.tscn" id="1_p1c30"]
 [ext_resource type="PackedScene" uid="uid://dy7h7r4s7mp46" path="res://scenes/world/camera/player_camera.tscn" id="2_oexcb"]
 [ext_resource type="PackedScene" uid="uid://bjid6eef6piwu" path="res://scenes/actors/player/player.tscn" id="3_ja5n0"]
-[ext_resource type="PackedScene" uid="uid://2id4am2unkk5" path="res://scenes/world/objects/wall_tile/wall_tile.tscn" id="4_xjb16"]
+[ext_resource type="PackedScene" uid="uid://2id4am2unkk5" path="res://scenes/world/objects/tiles/wall_tile.tscn" id="4_xjb16"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_c41w2"]
 size = Vector2(20, 20)

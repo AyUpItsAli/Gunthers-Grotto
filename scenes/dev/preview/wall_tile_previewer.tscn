@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cj4t5xjvo5isg"]
 
 [ext_resource type="Script" path="res://scenes/dev/preview/wall_tile_previewer.gd" id="1_xardb"]
-[ext_resource type="PackedScene" uid="uid://2id4am2unkk5" path="res://scenes/world/objects/wall_tile/wall_tile.tscn" id="2_gp1i6"]
+[ext_resource type="PackedScene" uid="uid://2id4am2unkk5" path="res://scenes/world/objects/tiles/wall_tile.tscn" id="2_gp1i6"]
 [ext_resource type="Resource" uid="uid://cxigp68dcfmy5" path="res://data/world/tile_sets/dev_walls_tile_set.tres" id="2_wcjj0"]
 
 [node name="WallTilePreviewer" type="Node" node_paths=PackedStringArray("wall_tile")]
