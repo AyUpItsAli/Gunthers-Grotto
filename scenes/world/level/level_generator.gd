@@ -116,9 +116,8 @@ func generate_walls():
 	for x in range(start_x, end_x + 1):
 		for y in range(start_y, end_y + 1):
 			var grid_pos = Vector2i(x, y)
-			var atlas_coords: Vector2i = tile_map.get_cell_atlas_coords(0, grid_pos)
-			if atlas_coords.x == -1: continue
-			level_grid.place_wall_tile(grid_pos, atlas_coords)
+			if context.is_tile_empty(grid_pos): continue
+			level_grid.place_wall_tile(grid_pos)
 
 func generate_ground():
 	print("Generating ground...")

@@ -29,8 +29,8 @@ func _init(level_generator: LevelGenerator):
 	biome = level_generator.biome
 	rng = level_generator.rng
 
-func is_tile_empty(tile_pos: Vector2i) -> bool:
-	return tile_map.get_cell_source_id(0, tile_pos) == -1
+func is_tile_empty(grid_pos: Vector2i) -> bool:
+	return tile_map.get_cell_source_id(0, grid_pos) == -1
 
 func get_random_tile() -> Vector2i:
 	return Vector2i(rng.randi_range(start_x, end_x), rng.randi_range(start_y, end_y))
