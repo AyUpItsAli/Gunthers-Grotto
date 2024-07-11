@@ -31,6 +31,7 @@ extends Node
 @export_group("Nodes")
 @export var tile_map: TileMap
 @export var level_grid: LevelGrid
+@export var wall_tile_scene: PackedScene
 
 var width: int
 var height: int
@@ -81,7 +82,6 @@ func setup_generator():
 
 func generate_tiles():
 	print("Generating tile map tiles...")
-	
 	var tiles: Array[Vector2i] = []
 	for x in range(start_x, end_x + 1):
 		for y in range(start_y, end_y + 1):
@@ -106,11 +106,22 @@ func generate_tiles():
 
 func clear_level():
 	print("Clearing level...")
-	pass
+	for child in level_grid.get_children():
+		level_grid.remove_child(child)
+		child.queue_free()
 
 func generate_walls():
 	print("Generating walls...")
-	pass
+	for x in range(start_x, end_x + 1):
+		for y in range(start_y, end_y + 1):
+			var atlas_pos: Vector2i = tile_map.get_cell_atlas_coords(0, Vector2i(x, y))
+			if atlas_pos.x == -1: continue
+			var wall_tile = wall_tile_scene.instantiate()
+			if wall_tile is WallTile:
+				wall_tile.tile_set = biome.wall_tile_set
+				wall_tile.tile_coords = atlas_pos
+				wall_tile.position = Vector3(x, 0, y)
+				level_grid.add_child(wall_tile)
 
 func generate_ground():
 	print("Generating ground...")

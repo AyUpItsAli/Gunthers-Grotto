@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgw0gfrbp8gvm"]
+[gd_scene load_steps=4 format=3 uid="uid://dgw0gfrbp8gvm"]
 
 [ext_resource type="Script" path="res://scenes/world/level/level_generator.gd" id="1_3ddy3"]
+[ext_resource type="PackedScene" uid="uid://2id4am2unkk5" path="res://scenes/world/objects/wall_tile/wall_tile.tscn" id="2_2b5a5"]
 [ext_resource type="TileSet" uid="uid://dfjoplpmidgrk" path="res://data/world/tile_sets/preview_tile_set.tres" id="2_r65i0"]
 
 [node name="LevelGenerator" type="Node" node_paths=PackedStringArray("tile_map")]
 script = ExtResource("1_3ddy3")
 tile_map = NodePath("TileMap")
+wall_tile_scene = ExtResource("2_2b5a5")
 
 [node name="TileMap" type="TileMap" parent="."]
 visible = false
