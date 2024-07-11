@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqj0k7xd37ffa"]
+
+[ext_resource type="Script" path="res://scenes/dev/level_previewer.gd" id="1_rtf83"]
+[ext_resource type="PackedScene" uid="uid://dgw0gfrbp8gvm" path="res://scenes/world/level/level_generator.tscn" id="2_ic1co"]
+[ext_resource type="Resource" uid="uid://g32r1uw0otsr" path="res://data/world/biomes/prototype.tres" id="3_3ewbf"]
+
+[node name="LevelPreviewer" type="Node" node_paths=PackedStringArray("level_generator")]
+script = ExtResource("1_rtf83")
+level_generator = NodePath("LevelGenerator")
+
+[node name="LevelGenerator" parent="." instance=ExtResource("2_ic1co")]
+biome = ExtResource("3_3ewbf")
+
+[connection signal="settings_changed" from="LevelGenerator" to="." method="_on_level_generator_settings_changed"]

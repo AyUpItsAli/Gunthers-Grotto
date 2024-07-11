@@ -5,15 +5,6 @@ extends Resource
 @export_category("Biome")
 @export var id: Data.Biomes.Id
 @export var name: String
-@export_group("Tiles")
-@export var ground_terrain: int:
-	set(new_value):
-		ground_terrain = new_value
-		emit_changed()
-@export var wall_terrain: int:
-	set(new_value):
-		wall_terrain = new_value
-		emit_changed()
 @export_group("Noise", "noise_")
 @export var noise_type: FastNoiseLite.NoiseType = FastNoiseLite.TYPE_SIMPLEX:
 	set(new_value):
@@ -51,5 +42,6 @@ extends Resource
 	set(new_value):
 		noise_edge_width = new_value
 		emit_changed()
-@export_group("Features")
+@export_group("Level")
+@export var wall_tile_set: WallTileSet
 @export var features: Array[Feature]

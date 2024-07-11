@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bjuryeh8ettom"]
+[gd_scene load_steps=10 format=3 uid="uid://bjuryeh8ettom"]
 
+[ext_resource type="Script" path="res://scenes/world/level/level.gd" id="1_4wstg"]
 [ext_resource type="PackedScene" uid="uid://drn5n5w1fbbms" path="res://scenes/world/camera/topdown_viewport_container.tscn" id="1_n3ch6"]
 [ext_resource type="PackedScene" uid="uid://dy7h7r4s7mp46" path="res://scenes/world/camera/player_camera.tscn" id="2_dfhiy"]
+[ext_resource type="PackedScene" uid="uid://dgw0gfrbp8gvm" path="res://scenes/world/level/level_generator.tscn" id="2_flrqf"]
 [ext_resource type="PackedScene" uid="uid://bjid6eef6piwu" path="res://scenes/actors/player/player.tscn" id="3_5u4i6"]
-[ext_resource type="Script" path="res://scenes/world/level/level_generator.gd" id="4_lx15o"]
+[ext_resource type="Resource" uid="uid://g32r1uw0otsr" path="res://data/world/biomes/prototype.tres" id="3_oodk7"]
 [ext_resource type="Script" path="res://scenes/world/level/level_grid.gd" id="5_wfkya"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1bggo"]
@@ -12,10 +14,13 @@ size = Vector2(20, 20)
 [sub_resource type="LabelSettings" id="LabelSettings_6rcew"]
 font_size = 32
 
-[node name="Level" type="Node"]
+[node name="Level" type="Node" node_paths=PackedStringArray("level_generator")]
+script = ExtResource("1_4wstg")
+level_generator = NodePath("LevelGenerator")
 
-[node name="LevelGenerator" type="Node" parent="."]
-script = ExtResource("4_lx15o")
+[node name="LevelGenerator" parent="." node_paths=PackedStringArray("level_grid") instance=ExtResource("2_flrqf")]
+biome = ExtResource("3_oodk7")
+level_grid = NodePath("../TopdownViewportContainer/SubViewport/World/LevelGrid")
 
 [node name="TopdownViewportContainer" parent="." instance=ExtResource("1_n3ch6")]
 scale = Vector2(1, 1.41421)

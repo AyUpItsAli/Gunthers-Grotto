@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvech37yp02x"
-path="res://.godot/imported/dev_walls_tile_set.png-68374733d914f07318d9abdc3f32dacf.ctex"
+uid="uid://b8641mv3x1y8b"
+path="res://.godot/imported/preview_tile_set.png-d6328cfb8981b8efcb6cb5b482fcfe6e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://2d/world/dev/prototype/dev_walls_tile_set.png"
-dest_files=["res://.godot/imported/dev_walls_tile_set.png-68374733d914f07318d9abdc3f32dacf.ctex"]
+source_file="res://data/world/tile_sets/preview_tile_set.png"
+dest_files=["res://.godot/imported/preview_tile_set.png-d6328cfb8981b8efcb6cb5b482fcfe6e.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

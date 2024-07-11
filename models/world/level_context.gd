@@ -1,10 +1,9 @@
 class_name LevelContext
 extends Object
 
-# Tile map
+# Tile map and Level grid
 var tile_map: TileMap
-var ground_layer: int
-var wall_layer: int
+var level_grid: LevelGrid
 
 # Dimensions
 var width: int
@@ -20,8 +19,7 @@ var rng: RandomNumberGenerator
 
 func _init(level_generator: LevelGenerator):
 	tile_map = level_generator.tile_map
-	ground_layer = level_generator.ground_layer
-	wall_layer = level_generator.wall_layer
+	level_grid = level_generator.level_grid
 	width = level_generator.width
 	height = level_generator.height
 	start_x = level_generator.start_x
@@ -32,7 +30,7 @@ func _init(level_generator: LevelGenerator):
 	rng = level_generator.rng
 
 func is_tile_empty(tile_pos: Vector2i) -> bool:
-	return tile_map.get_cell_source_id(wall_layer, tile_pos) == -1
+	return tile_map.get_cell_source_id(0, tile_pos) == -1
 
 func get_random_tile() -> Vector2i:
 	return Vector2i(rng.randi_range(start_x, end_x), rng.randi_range(start_y, end_y))
