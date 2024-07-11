@@ -19,9 +19,9 @@ level_generator = NodePath("LevelGenerator")
 
 [node name="LevelGenerator" type="Node" parent="." node_paths=PackedStringArray("tile_map", "level_grid")]
 script = ExtResource("2_nbugp")
-biome = ExtResource("3_oodk7")
 tile_map = NodePath("../TileMap")
 level_grid = NodePath("../TopdownViewportContainer/SubViewport/World/LevelGrid")
+biome = ExtResource("3_oodk7")
 
 [node name="TileMap" type="TileMap" parent="."]
 visible = false

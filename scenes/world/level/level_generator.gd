@@ -2,6 +2,9 @@
 class_name LevelGenerator
 extends Node
 
+@export_group("Nodes")
+@export var tile_map: TileMap
+@export var level_grid: LevelGrid
 @export_group("Settings")
 @export_range(0, 200) var min_size: int = 50:
 	set(new_value):
@@ -28,9 +31,6 @@ extends Node
 		biome = new_value
 		if biome: biome.changed.connect(_on_biome_changed)
 		settings_changed.emit()
-@export_group("Nodes")
-@export var tile_map: TileMap
-@export var level_grid: LevelGrid
 
 var width: int
 var height: int
@@ -155,3 +155,9 @@ func generate():
 	apply_features()
 	# Notify listeners
 	level_generated.emit()
+
+func randomise_seed():
+	var new_seed = ""
+	for i in range(9):
+		new_seed += Globals.SEED_CHARS[randi() % Globals.SEED_CHARS.length()]
+	level_seed = new_seed

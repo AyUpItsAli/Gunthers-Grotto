@@ -11,20 +11,14 @@ extends Node
 @export var _new_seed: bool = true:
 	set(new_value):
 		_new_seed = true
-		randomise_seed()
-
-func randomise_seed():
-	if not level_generator: return
-	var new_seed = ""
-	for i in range(9):
-		new_seed += Globals.SEED_CHARS[randi() % Globals.SEED_CHARS.length()]
-	level_generator.level_seed = new_seed
+		redraw(true)
 
 func _on_level_generator_settings_changed():
 	redraw()
 
-func redraw():
-	if not Engine.is_editor_hint(): return
+func redraw(new_seed: bool = false):
 	if not level_generator: return
-	level_generator.tile_map.visible = true
-	level_generator.generate()
+	if new_seed:
+		level_generator.randomise_seed()
+	else:
+		level_generator.generate()

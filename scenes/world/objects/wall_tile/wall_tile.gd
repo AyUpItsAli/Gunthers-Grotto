@@ -2,16 +2,17 @@
 class_name WallTile
 extends StaticBody3D
 
-@export var tile_set: WallTileSet
-@export var atlas_coords: Vector2i = Vector2i(0, 3)
 @export var collision_shape: CollisionShape3D
 @export var sprite_top: Sprite3D
 @export var sprite_bottom: Sprite3D
 
+var tile_set: WallTileSet
+var atlas_coords: Vector2i
+
 func setup_tile():
+	if not tile_set: return
 	# Collision Shape
-	var shape = collision_shape.shape as BoxShape3D
-	shape.size.y = tile_set.wall_height
+	(collision_shape.shape as BoxShape3D).size.y = tile_set.wall_height
 	collision_shape.position.y = tile_set.wall_height * 0.5
 	# Top Sprite
 	sprite_top.texture = tile_set.texture
@@ -25,6 +26,7 @@ func setup_tile():
 	update_texture_coords()
 
 func update_texture_coords():
+	if not tile_set: return
 	# Top Sprite
 	sprite_top.region_rect.position.x = atlas_coords.x * Globals.TILE_SIZE
 	sprite_top.region_rect.position.y = atlas_coords.y * (tile_set.wall_height + 1) * Globals.TILE_SIZE
@@ -33,4 +35,5 @@ func update_texture_coords():
 	sprite_bottom.region_rect.position.y = ((atlas_coords.y * (tile_set.wall_height + 1)) + 1) * Globals.TILE_SIZE
 
 func _ready():
+	if Engine.is_editor_hint(): return
 	setup_tile()
