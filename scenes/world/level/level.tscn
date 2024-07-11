@@ -7,9 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bjid6eef6piwu" path="res://scenes/actors/player/player.tscn" id="3_5u4i6"]
 [ext_resource type="Resource" uid="uid://g32r1uw0otsr" path="res://data/world/biomes/prototype.tres" id="3_oodk7"]
 [ext_resource type="Script" path="res://scenes/world/level/level_grid.gd" id="5_wfkya"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_1bggo"]
-size = Vector2(20, 20)
+[ext_resource type="PackedScene" uid="uid://2id4am2unkk5" path="res://scenes/world/objects/wall_tile/wall_tile.tscn" id="8_bxmsy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6rcew"]
 font_size = 32
@@ -35,9 +33,6 @@ render_target_update_mode = 4
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="TopdownViewportContainer/SubViewport/World"]
 transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75, 0.433013, 0, 0, 0)
 
-[node name="Plane" type="MeshInstance3D" parent="TopdownViewportContainer/SubViewport/World"]
-mesh = SubResource("PlaneMesh_1bggo")
-
 [node name="PlayerCamera" parent="TopdownViewportContainer/SubViewport/World" node_paths=PackedStringArray("target") instance=ExtResource("2_dfhiy")]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 10)
 target = NodePath("../Player")
@@ -46,6 +41,7 @@ target = NodePath("../Player")
 
 [node name="LevelGrid" type="Node3D" parent="TopdownViewportContainer/SubViewport/World"]
 script = ExtResource("5_wfkya")
+wall_tile_scene = ExtResource("8_bxmsy")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

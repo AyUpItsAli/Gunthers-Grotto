@@ -9,9 +9,9 @@ extends StaticBody3D
 		tile_set = new_value
 		if tile_set: tile_set.changed.connect(redraw)
 		redraw()
-@export var tile_coords: Vector2i = Vector2i(0, 3):
+@export var atlas_coords: Vector2i = Vector2i(0, 3):
 	set(new_value):
-		tile_coords = new_value
+		atlas_coords = new_value
 		redraw()
 @export var collision_shape: CollisionShape3D
 @export var sprite_top: Sprite3D
@@ -39,15 +39,15 @@ func update_tile():
 	# Top Sprite
 	sprite_top.texture = tile_set.texture
 	sprite_top.region_rect.size = Vector2(Globals.TILE_SIZE, Globals.TILE_SIZE)
-	sprite_top.region_rect.position.x = tile_coords.x * Globals.TILE_SIZE
-	sprite_top.region_rect.position.y = tile_coords.y * (tile_set.wall_height + 1) * Globals.TILE_SIZE
+	sprite_top.region_rect.position.x = atlas_coords.x * Globals.TILE_SIZE
+	sprite_top.region_rect.position.y = atlas_coords.y * (tile_set.wall_height + 1) * Globals.TILE_SIZE
 	sprite_top.position.y = tile_set.wall_height
 	
 	# Bottom Sprite
 	sprite_bottom.texture = tile_set.texture
 	sprite_bottom.region_rect.size = Vector2(Globals.TILE_SIZE, Globals.TILE_SIZE * tile_set.wall_height)
-	sprite_bottom.region_rect.position.x = tile_coords.x * Globals.TILE_SIZE
-	sprite_bottom.region_rect.position.y = ((tile_coords.y * (tile_set.wall_height + 1)) + 1) * Globals.TILE_SIZE
+	sprite_bottom.region_rect.position.x = atlas_coords.x * Globals.TILE_SIZE
+	sprite_bottom.region_rect.position.y = ((atlas_coords.y * (tile_set.wall_height + 1)) + 1) * Globals.TILE_SIZE
 	sprite_bottom.position.y = tile_set.wall_height * 0.5
 
 func _ready():
