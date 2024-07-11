@@ -5,17 +5,21 @@ extends StaticBody3D
 @export var tile_set: WallTileSet:
 	set(new_value):
 		if tile_set == new_value: return
-		if tile_set: tile_set.changed.disconnect(update_tile)
+		if tile_set: tile_set.changed.disconnect(redraw)
 		tile_set = new_value
-		if tile_set: tile_set.changed.connect(update_tile)
-		update_tile()
+		if tile_set: tile_set.changed.connect(redraw)
+		redraw()
 @export var tile_coords: Vector2i = Vector2i(0, 3):
 	set(new_value):
 		tile_coords = new_value
-		update_tile()
+		redraw()
 @export var collision_shape: CollisionShape3D
 @export var sprite_top: Sprite3D
 @export var sprite_bottom: Sprite3D
+
+func redraw():
+	if Engine.is_editor_hint():
+		update_tile()
 
 func update_tile():
 	if not collision_shape: return
