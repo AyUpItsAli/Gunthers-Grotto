@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bqj0k7xd37ffa"]
 
-[ext_resource type="Script" path="res://scenes/dev/level_previewer.gd" id="1_rtf83"]
+[ext_resource type="Script" path="res://scenes/dev/preview/level_previewer.gd" id="1_rtf83"]
 [ext_resource type="Script" path="res://scenes/world/level/level_generator.gd" id="2_w57eo"]
 [ext_resource type="Resource" uid="uid://g32r1uw0otsr" path="res://data/world/biomes/prototype.tres" id="3_3ewbf"]
 [ext_resource type="TileSet" uid="uid://dfjoplpmidgrk" path="res://data/world/tile_sets/preview_tile_set.tres" id="3_st2ry"]

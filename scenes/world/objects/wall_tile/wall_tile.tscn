@@ -1,15 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://2id4am2unkk5"]
+[gd_scene load_steps=4 format=3 uid="uid://2id4am2unkk5"]
 
 [ext_resource type="Script" path="res://scenes/world/objects/wall_tile/wall_tile.gd" id="1_r884f"]
-[ext_resource type="Resource" uid="uid://cxigp68dcfmy5" path="res://data/world/tile_sets/dev_walls_tile_set.tres" id="2_xgbii"]
 [ext_resource type="PackedScene" uid="uid://bpx0qg2ulwy52" path="res://scenes/util/world_sprite.tscn" id="3_eolwl"]
-[ext_resource type="Texture2D" uid="uid://c6kx4sgtltw8l" path="res://data/world/tile_sets/dev_walls_tile_set.png" id="4_28alt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2k7m2"]
 
 [node name="WallTile" type="StaticBody3D" node_paths=PackedStringArray("collision_shape", "sprite_top", "sprite_bottom")]
 script = ExtResource("1_r884f")
-tile_set = ExtResource("2_xgbii")
 collision_shape = NodePath("CollisionShape3D")
 sprite_top = NodePath("SpriteTop")
 sprite_bottom = NodePath("SpriteBottom")
@@ -21,12 +18,8 @@ shape = SubResource("BoxShape3D_2k7m2")
 [node name="SpriteTop" parent="." instance=ExtResource("3_eolwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 axis = 1
-texture = ExtResource("4_28alt")
 region_enabled = true
-region_rect = Rect2(0, 96, 16, 16)
 
 [node name="SpriteBottom" parent="." instance=ExtResource("3_eolwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.5)
-texture = ExtResource("4_28alt")
 region_enabled = true
-region_rect = Rect2(0, 112, 16, 16)
