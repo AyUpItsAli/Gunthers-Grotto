@@ -6,7 +6,7 @@ extends StaticBody3D
 @export var sprite_top: Sprite3D
 @export var sprite_bottom: Sprite3D
 
-var tile_set: WallTileSet
+var tile_set: LevelTileSet
 var atlas_coords: Vector2i
 
 func setup_tile():
@@ -15,11 +15,11 @@ func setup_tile():
 	(collision_shape.shape as BoxShape3D).size.y = tile_set.wall_height
 	collision_shape.position.y = tile_set.wall_height * 0.5
 	# Top Sprite
-	sprite_top.texture = tile_set.texture
+	sprite_top.texture = tile_set.wall_texture
 	sprite_top.region_rect.size = Vector2(Globals.TILE_SIZE, Globals.TILE_SIZE)
 	sprite_top.position.y = tile_set.wall_height
 	# Bottom Sprite
-	sprite_bottom.texture = tile_set.texture
+	sprite_bottom.texture = tile_set.wall_texture
 	sprite_bottom.region_rect.size = Vector2(Globals.TILE_SIZE, Globals.TILE_SIZE * tile_set.wall_height)
 	sprite_bottom.position.y = tile_set.wall_height * 0.5
 	# Texture coords

@@ -4,7 +4,7 @@ extends Node3D
 @export var tile_map: TileMap
 @export var wall_tile_scene: PackedScene
 
-var tile_set: WallTileSet
+var tile_set: LevelTileSet
 var tiles: Dictionary
 
 func place_wall_tile(grid_pos: Vector2i):

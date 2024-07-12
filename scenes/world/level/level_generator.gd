@@ -112,7 +112,7 @@ func clear_level():
 
 func generate_walls():
 	print("Generating walls...")
-	level_grid.tile_set = biome.wall_tile_set
+	level_grid.tile_set = biome.tile_set
 	for x in range(start_x, end_x + 1):
 		for y in range(start_y, end_y + 1):
 			var grid_pos = Vector2i(x, y)

@@ -43,5 +43,5 @@ extends Resource
 		noise_edge_width = new_value
 		emit_changed()
 @export_group("Level")
-@export var wall_tile_set: WallTileSet
+@export var tile_set: LevelTileSet
 @export var features: Array[Feature]

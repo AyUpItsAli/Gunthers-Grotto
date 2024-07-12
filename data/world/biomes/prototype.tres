@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://cjtwvrcqvbhyi" path="res://data/world/features/enemy_1_cluster.tres" id="1_yjxlt"]
 [ext_resource type="Resource" uid="uid://xon8qvl2enbf" path="res://data/world/features/enemy_2_cluster.tres" id="2_aefo4"]
 [ext_resource type="Resource" uid="uid://b0e2n1lvhjw1q" path="res://data/world/features/enemy_3_cluster.tres" id="3_fs2kb"]
-[ext_resource type="Resource" uid="uid://cxigp68dcfmy5" path="res://data/world/tile_sets/dev_walls_tile_set.tres" id="5_lvov7"]
+[ext_resource type="Resource" uid="uid://c5nnbx1yhkiec" path="res://data/world/tile_sets/dev_walls_tile_set_2.tres" id="5_m1pgs"]
 
 [resource]
 script = ExtResource("1_vt1te")
@@ -19,5 +19,5 @@ noise_lacunarity = 1.6
 noise_ping_pong_strength = 1.0
 noise_threshold = 0.75
 noise_edge_width = 10
-wall_tile_set = ExtResource("5_lvov7")
+tile_set = ExtResource("5_m1pgs")
 features = Array[Resource("res://models/world/features/feature.gd")]([ExtResource("1_yjxlt"), ExtResource("2_aefo4"), ExtResource("3_fs2kb")])
