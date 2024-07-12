@@ -32,6 +32,9 @@ func place_wall_tile(grid_pos: Vector2i):
 func remove_wall_tile(grid_pos: Vector2i):
 	if not grid_pos in wall_tiles: return
 	
+	# Place new ground tile in this new empty space
+	place_ground_tile(grid_pos)
+	
 	# Remove wall tile
 	var wall_tile = wall_tiles[grid_pos] as WallTile
 	wall_container.remove_child(wall_tile)
