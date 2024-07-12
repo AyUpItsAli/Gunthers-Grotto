@@ -108,22 +108,16 @@ func clear_level() -> void:
 	print("Clearing level...")
 	level_grid.clear_grid()
 
-func generate_walls() -> void:
-	print("Generating walls...")
+func generate_terrain() -> void:
+	print("Generating terrain...")
 	level_grid.tile_set = biome.tile_set
 	for x in range(start_x, end_x + 1):
 		for y in range(start_y, end_y + 1):
 			var grid_pos := Vector2i(x, y)
-			if context.is_tile_empty(grid_pos): continue
-			level_grid.place_wall_tile(grid_pos)
-
-func generate_ground() -> void:
-	print("Generating ground...")
-	for x in range(start_x, end_x + 1):
-		for y in range(start_y, end_y + 1):
-			var grid_pos := Vector2i(x, y)
-			if not context.is_tile_empty(grid_pos): continue
-			level_grid.place_ground_tile(grid_pos)
+			if context.is_tile_empty(grid_pos):
+				level_grid.place_ground_tile(grid_pos)
+			else:
+				level_grid.place_wall_tile(grid_pos)
 
 func apply_features() -> void:
 	var phases: Dictionary = Data.Features.construct_phases(biome.features)
@@ -150,8 +144,7 @@ func generate() -> void:
 	# Clear level
 	clear_level()
 	# Generate terrain
-	generate_walls()
-	generate_ground()
+	generate_terrain()
 	# Apply features
 	apply_features()
 	# Notify listeners
