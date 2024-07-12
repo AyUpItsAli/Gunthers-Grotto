@@ -1,13 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://dyrbcva7pm3yp"]
+[gd_scene load_steps=10 format=3 uid="uid://dyrbcva7pm3yp"]
 
 [ext_resource type="PackedScene" uid="uid://bpx0qg2ulwy52" path="res://scenes/util/world_sprite.tscn" id="1_4dnvh"]
+[ext_resource type="Script" path="res://scenes/actors/enemies/enemy_1.gd" id="1_y3qj1"]
 [ext_resource type="Texture2D" uid="uid://dakrnv51i5pet" path="res://scenes/actors/enemies/enemy_1.png" id="2_bhmwd"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="4_shm84"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_pr6og"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_bbg1g"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_scokr"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_1b3bu"]
 height = 1.313
 radius = 0.406
 
-[node name="Enemy1" type="CharacterBody3D"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_25mue"]
+height = 1.313
+radius = 6.0
+
+[node name="Enemy1" type="CharacterBody3D" node_paths=PackedStringArray("sight_area", "sight_line", "state_chart")]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_y3qj1")
+sight_area = NodePath("SightArea")
+sight_line = NodePath("SightLine")
+state_chart = NodePath("StateChart")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.656, 0)
@@ -16,3 +31,40 @@ shape = SubResource("CylinderShape3D_1b3bu")
 [node name="Sprite" parent="." instance=ExtResource("1_4dnvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, 0)
 texture = ExtResource("2_bhmwd")
+
+[node name="SightArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.656, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SightArea"]
+shape = SubResource("CylinderShape3D_25mue")
+
+[node name="SightLine" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.656, 0)
+target_position = Vector3(0, 0, 2)
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("4_shm84")
+
+[node name="Root" type="Node" parent="StateChart"]
+script = ExtResource("5_pr6og")
+initial_state = NodePath("Idiling")
+
+[node name="Idiling" type="Node" parent="StateChart/Root"]
+script = ExtResource("6_bbg1g")
+
+[node name="OnTargetSpotted" type="Node" parent="StateChart/Root/Idiling"]
+script = ExtResource("7_scokr")
+to = NodePath("../../Chasing")
+event = &"target_spotted"
+delay_in_seconds = "0.0"
+
+[node name="Chasing" type="Node" parent="StateChart/Root"]
+script = ExtResource("6_bbg1g")
+
+[node name="Attacking" type="Node" parent="StateChart/Root"]
+script = ExtResource("6_bbg1g")
+
+[connection signal="state_entered" from="StateChart/Root/Idiling" to="." method="_on_idiling_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Root/Idiling" to="." method="_on_idiling_state_physics_processing"]

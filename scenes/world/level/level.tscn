@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bjuryeh8ettom"]
+[gd_scene load_steps=14 format=3 uid="uid://bjuryeh8ettom"]
 
 [ext_resource type="Script" path="res://scenes/world/level/level.gd" id="1_4wstg"]
 [ext_resource type="PackedScene" uid="uid://drn5n5w1fbbms" path="res://scenes/world/camera/topdown_viewport_container.tscn" id="1_n3ch6"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://2id4am2unkk5" path="res://scenes/world/objects/tiles/wall_tile.tscn" id="8_bxmsy"]
 [ext_resource type="PackedScene" uid="uid://dyrbcva7pm3yp" path="res://scenes/actors/enemies/enemy_1.tscn" id="8_mtv1a"]
 [ext_resource type="PackedScene" uid="uid://bnyvc5u0xbg8l" path="res://scenes/world/objects/tiles/ground_tile.tscn" id="10_ftiiy"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="12_kh5hr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6rcew"]
 font_size = 32
@@ -31,7 +32,10 @@ tile_set = ExtResource("3_5be0p")
 format = 2
 
 [node name="TopdownViewportContainer" parent="." instance=ExtResource("1_n3ch6")]
-scale = Vector2(1, 1.41421)
+offset_top = 0.0
+offset_bottom = 0.0
+scale = Vector2(1, 1)
+foreshortening_correction = false
 
 [node name="SubViewport" type="SubViewport" parent="TopdownViewportContainer"]
 handle_input_locally = false
@@ -47,10 +51,17 @@ transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 10)
 target = NodePath("../Player")
 
+[node name="Node3D" type="Node3D" parent="TopdownViewportContainer/SubViewport/World"]
+transform = Transform3D(0.748088, 0, -0.6636, 0, 1, 0, 0.6636, 0, 0.748088, 0.12, 3.054, 11.201)
+
+[node name="Camera3D" type="Camera3D" parent="TopdownViewportContainer/SubViewport/World/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.91212, 0.409923, 0, -0.409923, 0.91212, 0, 0, 0)
+current = true
+
 [node name="Player" parent="TopdownViewportContainer/SubViewport/World" instance=ExtResource("3_5u4i6")]
 
 [node name="Enemy1" parent="TopdownViewportContainer/SubViewport/World" instance=ExtResource("8_mtv1a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 9)
 
 [node name="LevelGrid" type="Node3D" parent="TopdownViewportContainer/SubViewport/World" node_paths=PackedStringArray("tile_map", "wall_container", "ground_container")]
 script = ExtResource("5_wfkya")
@@ -65,6 +76,16 @@ ground_tile_scene = ExtResource("10_ftiiy")
 [node name="GroundContainer" type="Node3D" parent="TopdownViewportContainer/SubViewport/World/LevelGrid"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StateChartDebugger" parent="CanvasLayer" instance=ExtResource("12_kh5hr")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+offset_top = -250.0
+offset_right = 320.0
+grow_horizontal = 1
+grow_vertical = 0
+initial_node_to_watch = NodePath("../../TopdownViewportContainer/SubViewport/World/Enemy1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 1

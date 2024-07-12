@@ -17,6 +17,7 @@ albedo_color = Color(1, 0, 0, 0.337255)
 material = SubResource("StandardMaterial3D_7wn1a")
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("sprite", "hand", "pickaxe", "hitbox_pivot")]
+collision_layer = 2
 script = ExtResource("1_lcjhu")
 sprite = NodePath("Sprite")
 hand = NodePath("Hand")
