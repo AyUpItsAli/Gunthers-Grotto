@@ -3,7 +3,7 @@ extends Node
 const FEATURES: ResourceGroup = preload("res://data/world/features.tres")
 const BIOMES: ResourceGroup = preload("res://data/world/biomes.tres")
 
-func _ready():
+func _ready() -> void:
 	Features.load_features()
 	Biomes.load_biomes()
 
@@ -17,7 +17,7 @@ class Features:
 		ACTORS # Enemies, NPC, Player
 	}
 	
-	static func load_features():
+	static func load_features() -> void:
 		for path in FEATURES.paths:
 			var feature: Feature = load(path)
 			_features[feature.id] = feature
@@ -26,8 +26,8 @@ class Features:
 		return _features.get(id)
 	
 	static func construct_phases(features: Array[Feature]) -> Dictionary:
-		var phases = {}
-		for phase in Phase.values():
+		var phases := {}
+		for phase: int in Phase.values():
 			phases[phase] = []
 		for feature in features:
 			if feature in phases[feature.phase]:
@@ -35,7 +35,7 @@ class Features:
 			add_feature(feature, phases, [])
 		return phases
 	
-	static func add_feature(feature: Feature, phases: Dictionary, stack: Array[Feature]):
+	static func add_feature(feature: Feature, phases: Dictionary, stack: Array[Feature]) -> void:
 		stack.append(feature)
 		for id in feature.prerequisites:
 			var pre_feature: Feature = get_feature(id)
@@ -54,7 +54,7 @@ class Biomes:
 		PROTOTYPE
 	}
 	
-	static func load_biomes():
+	static func load_biomes() -> void:
 		for path in BIOMES.paths:
 			var biome: Biome = load(path)
 			_biomes[biome.id] = biome

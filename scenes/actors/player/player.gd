@@ -9,14 +9,14 @@ extends CharacterBody3D
 
 var spin: bool
 
-func _unhandled_input(event):
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("test"):
 		spin = not spin
 
-func _physics_process(_delta):
+func _physics_process(_delta: float) -> void:
 	# Movement
-	var direction_2d = Input.get_vector("left", "right", "up", "down") # Move direction in 2d space
-	var direction = Vector3(direction_2d.x, 0, direction_2d.y) # Move direction in 3d space
+	var direction_2d: Vector2 = Input.get_vector("left", "right", "up", "down") # Move direction in 2d space
+	var direction := Vector3(direction_2d.x, 0, direction_2d.y) # Move direction in 3d space
 	velocity = velocity.move_toward(direction * max_speed, acceleration)
 	move_and_slide()
 	

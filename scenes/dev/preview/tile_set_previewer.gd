@@ -26,9 +26,9 @@ extends Node
 		ground_texture_index = new_value
 		redraw()
 
-func redraw():
+func redraw() -> void:
 	if wall_tile:
-		var shape = BoxShape3D.new()
+		var shape := BoxShape3D.new()
 		shape.size.y = 1
 		wall_tile.collision_shape.shape = shape
 		wall_tile.collision_shape.position.y = 0.5

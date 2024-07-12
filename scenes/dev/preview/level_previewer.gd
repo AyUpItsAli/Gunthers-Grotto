@@ -13,10 +13,10 @@ extends Node
 		_new_seed = true
 		redraw(true)
 
-func _on_level_generator_settings_changed():
+func _on_level_generator_settings_changed() -> void:
 	redraw()
 
-func redraw(new_seed: bool = false):
+func redraw(new_seed: bool = false) -> void:
 	if not level_generator: return
 	if new_seed:
 		level_generator.randomise_seed()

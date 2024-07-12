@@ -17,8 +17,8 @@ extends Resource
 @export var ground_probabilities: Array[float]
 
 func get_random_ground_texture_index() -> int:
-	var value = randf()
-	var prob = 0
+	var value: float = randf()
+	var prob: float = 0
 	for i in range(ground_probabilities.size()):
 		prob += ground_probabilities[i]
 		if value < prob:

@@ -8,7 +8,7 @@ extends SubViewportContainer
 		update_viewport()
 @export var foreshortening_correction: bool = true
 
-func update_viewport():
+func update_viewport() -> void:
 	if foreshortening_correction:
 		scale.y = sqrt(2)
 		position.y = -(size.y * (sqrt(2)-1) / 2.0)
@@ -16,5 +16,5 @@ func update_viewport():
 		scale.y = 1
 		position.y = 0
 
-func _ready():
+func _ready() -> void:
 	update_viewport()

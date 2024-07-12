@@ -17,7 +17,7 @@ var end_y: int
 var biome: Biome
 var rng: RandomNumberGenerator
 
-func _init(level_generator: LevelGenerator):
+func _init(level_generator: LevelGenerator) -> void:
 	tile_map = level_generator.tile_map
 	level_grid = level_generator.level_grid
 	width = level_generator.width
@@ -36,11 +36,11 @@ func get_random_tile() -> Vector2i:
 	return Vector2i(rng.randi_range(start_x, end_x), rng.randi_range(start_y, end_y))
 
 func get_random_empty_tile() -> Vector2i:
-	var tile = get_random_tile()
+	var tile := get_random_tile()
 	while not is_tile_empty(tile):
 		tile = get_random_tile()
 	return tile
 
 func get_random_unoccupied_pos() -> Vector2:
-	var empty_tile = get_random_empty_tile()
+	var empty_tile := get_random_empty_tile()
 	return tile_map.map_to_local(empty_tile)

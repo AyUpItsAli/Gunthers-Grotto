@@ -5,7 +5,7 @@ extends Camera3D
 @export var target: Node3D
 @export var smooth_weight: float = 0.1
 
-func _physics_process(_delta):
+func _physics_process(_delta: float) -> void:
 	if not target or target.is_queued_for_deletion():
 		return
 	position.x = lerp(position.x, target.position.x, smooth_weight)

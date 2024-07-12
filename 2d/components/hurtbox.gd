@@ -20,5 +20,5 @@ func hurt(damage: float) -> bool:
 	hit.emit()
 	return true
 
-func _on_immunity_timer_timeout():
+func _on_immunity_timer_timeout() -> void:
 	immunity_ended.emit()

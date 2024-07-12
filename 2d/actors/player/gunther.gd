@@ -7,24 +7,24 @@ extends CharacterBody2D
 
 signal died
 
-func _physics_process(_delta):
-	var direction = Input.get_vector("left", "right", "up", "down")
+func _physics_process(_delta: float) -> void:
+	var direction: Vector2 = Input.get_vector("left", "right", "up", "down")
 	velocity = velocity.move_toward(direction * max_speed, acceleration)
 	move_and_slide()
 
-func _on_hurtbox_hit():
-	var color_before = sprite.modulate
+func _on_hurtbox_hit() -> void:
+	var color_before: Color = sprite.modulate
 	sprite.modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = color_before
 	sprite.modulate.a = 0.5
 
-func _on_hurtbox_immunity_ended():
+func _on_hurtbox_immunity_ended() -> void:
 	sprite.modulate.a = 1
 
-func _on_health_depleted():
+func _on_health_depleted() -> void:
 	die()
 
-func die():
+func die() -> void:
 	died.emit()
 	queue_free()

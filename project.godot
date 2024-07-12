@@ -22,6 +22,7 @@ Data="*res://globals/data.gd"
 
 [debug]
 
+gdscript/warnings/untyped_declaration=2
 shapes/collision/shape_color=Color(0, 0.6, 0.701961, 0.419608)
 
 [display]

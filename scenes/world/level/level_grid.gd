@@ -11,7 +11,7 @@ var tile_set: LevelTileSet
 var wall_tiles: Dictionary
 var ground_tiles: Dictionary
 
-func clear_grid():
+func clear_grid() -> void:
 	for child in wall_container.get_children():
 		wall_container.remove_child(child)
 		child.queue_free()
@@ -19,24 +19,23 @@ func clear_grid():
 		ground_container.remove_child(child)
 		child.queue_free()
 
-func place_wall_tile(grid_pos: Vector2i):
-	var wall_tile = wall_tile_scene.instantiate()
-	if wall_tile is WallTile:
-		wall_tile.tile_set = tile_set
-		wall_tile.atlas_coords = tile_map.get_cell_atlas_coords(0, grid_pos)
-		wall_tile.position = Vector3(grid_pos.x, 0, grid_pos.y)
-		wall_container.add_child(wall_tile)
-		wall_tiles[grid_pos] = wall_tile
+func place_wall_tile(grid_pos: Vector2i) -> void:
+	var wall_tile: WallTile = wall_tile_scene.instantiate()
+	wall_tile.tile_set = tile_set
+	wall_tile.atlas_coords = tile_map.get_cell_atlas_coords(0, grid_pos)
+	wall_tile.position = Vector3(grid_pos.x, 0, grid_pos.y)
+	wall_container.add_child(wall_tile)
+	wall_tiles[grid_pos] = wall_tile
 
 # Note: If done during gameplay, call in deferred mode to avoid potential lag spike
-func remove_wall_tile(grid_pos: Vector2i):
+func remove_wall_tile(grid_pos: Vector2i) -> void:
 	if not grid_pos in wall_tiles: return
 	
 	# Place new ground tile in this new empty space
 	place_ground_tile(grid_pos)
 	
 	# Remove wall tile
-	var wall_tile = wall_tiles[grid_pos] as WallTile
+	var wall_tile: WallTile = wall_tiles[grid_pos]# as WallTile
 	wall_container.remove_child(wall_tile)
 	wall_tile.queue_free()
 	wall_tiles.erase(grid_pos)
@@ -45,25 +44,24 @@ func remove_wall_tile(grid_pos: Vector2i):
 	tile_map.set_cells_terrain_connect(0, [grid_pos], 0, -1)
 	
 	# Update neighbours
-	for i in [-1, 0, 1]:
-		for j in [-1, 0, 1]:
+	for i: int in [-1, 0, 1]:
+		for j: int in [-1, 0, 1]:
 			if i == 0 and j == 0: continue
-			var neighbour_pos = grid_pos + Vector2i(i, j)
+			var neighbour_pos := grid_pos + Vector2i(i, j)
 			if not neighbour_pos in wall_tiles: continue
-			var neighbour_tile = wall_tiles[neighbour_pos] as WallTile
+			var neighbour_tile: WallTile = wall_tiles[neighbour_pos]# as WallTile
 			neighbour_tile.atlas_coords = tile_map.get_cell_atlas_coords(0, neighbour_pos)
 			neighbour_tile.update_texture_coords()
 
-func place_ground_tile(grid_pos: Vector2i):
-	var ground_tile = ground_tile_scene.instantiate()
-	if ground_tile is GroundTile:
-		ground_tile.tile_set = tile_set
-		ground_tile.texture_index = tile_set.get_random_ground_texture_index()
-		ground_tile.position = Vector3(grid_pos.x, 0, grid_pos.y)
-		ground_container.add_child(ground_tile)
-		ground_tiles[grid_pos] = ground_tile
+func place_ground_tile(grid_pos: Vector2i) -> void:
+	var ground_tile: GroundTile = ground_tile_scene.instantiate()
+	ground_tile.tile_set = tile_set
+	ground_tile.texture_index = tile_set.get_random_ground_texture_index()
+	ground_tile.position = Vector3(grid_pos.x, 0, grid_pos.y)
+	ground_container.add_child(ground_tile)
+	ground_tiles[grid_pos] = ground_tile
 
-func _unhandled_input(event):
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("test"):
 		remove_wall_tile.call_deferred(Vector2i(0, -1))
 		remove_wall_tile.call_deferred(Vector2i(0, -2))

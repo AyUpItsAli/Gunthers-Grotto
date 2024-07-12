@@ -7,7 +7,7 @@ extends Node
 
 signal depleted
 
-func damage(amount: float):
+func damage(amount: float) -> void:
 	health = max(0, health - amount)
 	if health <= 0:
 		depleted.emit()

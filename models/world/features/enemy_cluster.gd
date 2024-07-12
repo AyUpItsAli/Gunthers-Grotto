@@ -4,7 +4,7 @@ extends Feature
 @export var enemy_scene: PackedScene
 @export_color_no_alpha var color: Color
 
-func apply(context: LevelContext):
+func apply(context: LevelContext) -> void:
 	var enemy: CharacterBody2D = enemy_scene.instantiate()
 	enemy.position = context.get_random_unoccupied_pos()
 	var sprite: Sprite2D = enemy.get_node("Sprite2D")

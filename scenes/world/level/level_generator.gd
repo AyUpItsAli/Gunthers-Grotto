@@ -46,10 +46,10 @@ var context: LevelContext
 signal settings_changed
 signal level_generated
 
-func _on_biome_changed():
+func _on_biome_changed() -> void:
 	settings_changed.emit()
 
-func setup_generator():
+func setup_generator() -> void:
 	print("Setting up level generator...")
 	
 	# RNG Setup
@@ -80,14 +80,14 @@ func setup_generator():
 	# Context Setup
 	context = LevelContext.new(self)
 
-func generate_tiles():
+func generate_tiles() -> void:
 	print("Generating tile map tiles...")
 	var tiles: Array[Vector2i] = []
 	for x in range(start_x, end_x + 1):
 		for y in range(start_y, end_y + 1):
-			var value = (noise.get_noise_2d(x, y) + 1) / 2.0
-			var edge_begin_x = end_x - biome.noise_edge_width
-			var edge_begin_y = end_y - biome.noise_edge_width
+			var value: float = (noise.get_noise_2d(x, y) + 1) / 2.0
+			var edge_begin_x: int = end_x - biome.noise_edge_width
+			var edge_begin_y: int = end_y - biome.noise_edge_width
 			
 			if abs(x) > edge_begin_x and abs(y) > edge_begin_y: # Corners
 				value += (abs(x) - edge_begin_x) / float(biome.noise_edge_width)
@@ -104,38 +104,37 @@ func generate_tiles():
 	
 	tile_map.set_cells_terrain_connect(0, tiles, 0, 0)
 
-func clear_level():
+func clear_level() -> void:
 	print("Clearing level...")
 	level_grid.clear_grid()
 
-func generate_walls():
+func generate_walls() -> void:
 	print("Generating walls...")
 	level_grid.tile_set = biome.tile_set
 	for x in range(start_x, end_x + 1):
 		for y in range(start_y, end_y + 1):
-			var grid_pos = Vector2i(x, y)
+			var grid_pos := Vector2i(x, y)
 			if context.is_tile_empty(grid_pos): continue
 			level_grid.place_wall_tile(grid_pos)
 
-func generate_ground():
+func generate_ground() -> void:
 	print("Generating ground...")
 	for x in range(start_x, end_x + 1):
 		for y in range(start_y, end_y + 1):
-			var grid_pos = Vector2i(x, y)
+			var grid_pos := Vector2i(x, y)
 			if not context.is_tile_empty(grid_pos): continue
 			level_grid.place_ground_tile(grid_pos)
 
-func apply_features():
+func apply_features() -> void:
 	var phases: Dictionary = Data.Features.construct_phases(biome.features)
-	for phase in phases:
+	for phase: int in phases:
 		print("Entering %s phase" % Data.Features.Phase.find_key(phase))
 		var features: Array = phases[phase]
 		print("Applying features (%s)" % features.size())
-		for feature in features:
-			if feature is Feature:
-				feature.apply(context)
+		for feature: Feature in features:
+			feature.apply(context)
 
-func generate():
+func generate() -> void:
 	if not tile_map: return
 	tile_map.clear()
 	if not biome: return
@@ -158,8 +157,8 @@ func generate():
 	# Notify listeners
 	level_generated.emit()
 
-func randomise_seed():
-	var new_seed = ""
+func randomise_seed() -> void:
+	var new_seed: String = ""
 	for i in range(9):
 		new_seed += Globals.SEED_CHARS[randi() % Globals.SEED_CHARS.length()]
 	level_seed = new_seed
