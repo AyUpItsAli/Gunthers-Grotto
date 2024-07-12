@@ -50,7 +50,7 @@ target = NodePath("../Player")
 [node name="Player" parent="TopdownViewportContainer/SubViewport/World" instance=ExtResource("3_5u4i6")]
 
 [node name="Enemy1" parent="TopdownViewportContainer/SubViewport/World" instance=ExtResource("8_mtv1a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2)
 
 [node name="LevelGrid" type="Node3D" parent="TopdownViewportContainer/SubViewport/World" node_paths=PackedStringArray("tile_map", "wall_container", "ground_container")]
 script = ExtResource("5_wfkya")

@@ -5,12 +5,12 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_1b3bu"]
 height = 1.313
-radius = 0.3
+radius = 0.406
 
 [node name="Enemy1" type="CharacterBody3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.656, -0.05)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.656, 0)
 shape = SubResource("CylinderShape3D_1b3bu")
 
 [node name="Sprite" parent="." instance=ExtResource("1_4dnvh")]
