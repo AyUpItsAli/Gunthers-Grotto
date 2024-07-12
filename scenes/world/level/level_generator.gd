@@ -106,9 +106,7 @@ func generate_tiles():
 
 func clear_level():
 	print("Clearing level...")
-	for child in level_grid.get_children():
-		level_grid.remove_child(child)
-		child.queue_free()
+	level_grid.clear_grid()
 
 func generate_walls():
 	print("Generating walls...")
@@ -121,7 +119,11 @@ func generate_walls():
 
 func generate_ground():
 	print("Generating ground...")
-	pass
+	for x in range(start_x, end_x + 1):
+		for y in range(start_y, end_y + 1):
+			var grid_pos = Vector2i(x, y)
+			if not context.is_tile_empty(grid_pos): continue
+			level_grid.place_ground_tile(grid_pos)
 
 func apply_features():
 	var phases: Dictionary = Data.Features.construct_phases(biome.features)

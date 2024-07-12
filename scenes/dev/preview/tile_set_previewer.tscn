@@ -1,15 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://cj4t5xjvo5isg"]
 
 [ext_resource type="Script" path="res://scenes/dev/preview/tile_set_previewer.gd" id="1_xardb"]
-[ext_resource type="Resource" uid="uid://c5nnbx1yhkiec" path="res://data/world/tile_sets/dev_walls_tile_set_2.tres" id="2_35c2i"]
 [ext_resource type="PackedScene" uid="uid://2id4am2unkk5" path="res://scenes/world/objects/tiles/wall_tile.tscn" id="2_gp1i6"]
+[ext_resource type="Resource" uid="uid://cxigp68dcfmy5" path="res://data/world/tile_sets/dev_walls_tile_set.tres" id="2_wcjj0"]
 [ext_resource type="PackedScene" uid="uid://bnyvc5u0xbg8l" path="res://scenes/world/objects/tiles/ground_tile.tscn" id="4_odmjw"]
 
 [node name="TileSetPreviewer" type="Node" node_paths=PackedStringArray("wall_tile", "ground_tile")]
 script = ExtResource("1_xardb")
 wall_tile = NodePath("WallTile")
 ground_tile = NodePath("GroundTile")
-tile_set = ExtResource("2_35c2i")
+tile_set = ExtResource("2_wcjj0")
 
 [node name="WallTile" parent="." instance=ExtResource("2_gp1i6")]
 

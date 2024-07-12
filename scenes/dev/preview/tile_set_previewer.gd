@@ -21,9 +21,9 @@ extends Node
 	set(new_value):
 		wall_atlas_coords = new_value
 		redraw()
-@export var ground_atlas_coords: Vector2i = Vector2i(1, 0):
+@export var ground_texture_index: int = 1:
 	set(new_value):
-		ground_atlas_coords = new_value
+		ground_texture_index = new_value
 		redraw()
 
 func redraw():
@@ -41,5 +41,5 @@ func redraw():
 		wall_tile.setup_tile()
 	if ground_tile:
 		ground_tile.tile_set = tile_set
-		ground_tile.atlas_coords = ground_atlas_coords
+		ground_tile.texture_index = ground_texture_index
 		ground_tile.setup_tile()

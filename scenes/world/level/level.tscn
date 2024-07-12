@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjuryeh8ettom"]
+[gd_scene load_steps=12 format=3 uid="uid://bjuryeh8ettom"]
 
 [ext_resource type="Script" path="res://scenes/world/level/level.gd" id="1_4wstg"]
 [ext_resource type="PackedScene" uid="uid://drn5n5w1fbbms" path="res://scenes/world/camera/topdown_viewport_container.tscn" id="1_n3ch6"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://g32r1uw0otsr" path="res://data/world/biomes/prototype.tres" id="3_oodk7"]
 [ext_resource type="Script" path="res://scenes/world/level/level_grid.gd" id="5_wfkya"]
 [ext_resource type="PackedScene" uid="uid://2id4am2unkk5" path="res://scenes/world/objects/tiles/wall_tile.tscn" id="8_bxmsy"]
+[ext_resource type="PackedScene" uid="uid://bnyvc5u0xbg8l" path="res://scenes/world/objects/tiles/ground_tile.tscn" id="10_ftiiy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6rcew"]
 font_size = 32
@@ -47,10 +48,17 @@ target = NodePath("../Player")
 
 [node name="Player" parent="TopdownViewportContainer/SubViewport/World" instance=ExtResource("3_5u4i6")]
 
-[node name="LevelGrid" type="Node3D" parent="TopdownViewportContainer/SubViewport/World" node_paths=PackedStringArray("tile_map")]
+[node name="LevelGrid" type="Node3D" parent="TopdownViewportContainer/SubViewport/World" node_paths=PackedStringArray("tile_map", "wall_container", "ground_container")]
 script = ExtResource("5_wfkya")
 tile_map = NodePath("../../../../TileMap")
+wall_container = NodePath("WallContainer")
+ground_container = NodePath("GroundContainer")
 wall_tile_scene = ExtResource("8_bxmsy")
+ground_tile_scene = ExtResource("10_ftiiy")
+
+[node name="WallContainer" type="Node3D" parent="TopdownViewportContainer/SubViewport/World/LevelGrid"]
+
+[node name="GroundContainer" type="Node3D" parent="TopdownViewportContainer/SubViewport/World/LevelGrid"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

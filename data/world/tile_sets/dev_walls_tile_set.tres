@@ -9,3 +9,4 @@ script = ExtResource("2_6gjvb")
 wall_texture = ExtResource("2_jpk3x")
 wall_height = 1
 ground_texture = ExtResource("1_ril5h")
+ground_probabilities = Array[float]([0.85, 0.05, 0.05, 0.05])
