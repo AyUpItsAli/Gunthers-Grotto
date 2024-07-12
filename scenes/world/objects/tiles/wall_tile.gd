@@ -12,7 +12,9 @@ var atlas_coords: Vector2i
 func setup_tile():
 	if not tile_set: return
 	# Collision Shape
-	(collision_shape.shape as BoxShape3D).size.y = tile_set.wall_height
+	var shape = BoxShape3D.new()
+	shape.size.y = tile_set.wall_height
+	collision_shape.shape = shape
 	collision_shape.position.y = tile_set.wall_height * 0.5
 	# Top Sprite
 	sprite_top.texture = tile_set.wall_texture

@@ -28,7 +28,9 @@ extends Node
 
 func redraw():
 	if wall_tile:
-		(wall_tile.collision_shape.shape as BoxShape3D).size.y = 1
+		var shape = BoxShape3D.new()
+		shape.size.y = 1
+		wall_tile.collision_shape.shape = shape
 		wall_tile.collision_shape.position.y = 0.5
 		wall_tile.sprite_top.texture = null
 		wall_tile.sprite_bottom.texture = null
