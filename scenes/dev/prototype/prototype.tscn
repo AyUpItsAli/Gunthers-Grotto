@@ -11,7 +11,6 @@ size = Vector2(20, 20)
 [node name="Prototype" type="Node"]
 
 [node name="TopdownViewportContainer" parent="." instance=ExtResource("1_p1c30")]
-scale = Vector2(1, 1.41421)
 
 [node name="SubViewport" type="SubViewport" parent="TopdownViewportContainer"]
 handle_input_locally = false

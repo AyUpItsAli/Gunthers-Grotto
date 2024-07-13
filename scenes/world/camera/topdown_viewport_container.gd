@@ -1,11 +1,4 @@
-@tool
 extends SubViewportContainer
-
-@warning_ignore("unused_private_class_variable")
-@export var _update_viewport: bool = true:
-	set(new_value):
-		_update_viewport = true
-		update_viewport()
 
 func _ready() -> void:
 	Globals.controllers_changed.connect(update_viewport)
