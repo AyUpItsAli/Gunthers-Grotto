@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://2d/actors/enemies/enemy_1_old.gd" id="1_0uvdk"]
 [ext_resource type="Texture2D" uid="uid://bbve78u03ju8s" path="res://assets/circle.png" id="2_q4saf"]
-[ext_resource type="PackedScene" uid="uid://d03h3h0vkxquc" path="res://2d/components/context_map.tscn" id="3_aixup"]
+[ext_resource type="PackedScene" uid="uid://d03h3h0vkxquc" path="res://2d/components/context_map_old.tscn" id="3_hhfu4"]
 [ext_resource type="PackedScene" uid="uid://cgfrp56dfyyer" path="res://2d/components/hitbox.tscn" id="4_vypkd"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="5_sgt6l"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="6_6tjn1"]
@@ -92,7 +92,7 @@ debug_use_custom = true
 debug_path_custom_color = Color(0.168627, 0.607843, 0.411765, 0.686275)
 debug_path_custom_point_size = 1.0
 
-[node name="ContextMap" parent="." instance=ExtResource("3_aixup")]
+[node name="ContextMap" parent="." instance=ExtResource("3_hhfu4")]
 
 [node name="Hitbox" parent="." instance=ExtResource("4_vypkd")]
 position = Vector2(0, -3)

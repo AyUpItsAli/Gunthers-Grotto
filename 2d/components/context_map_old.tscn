@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://d03h3h0vkxquc"]
 
-[ext_resource type="Script" path="res://2d/components/context_map.gd" id="1_b3xb2"]
+[ext_resource type="Script" path="res://2d/components/context_map_old.gd" id="1_rijtb"]
 
 [node name="ContextMap" type="Node2D"]
-script = ExtResource("1_b3xb2")
+script = ExtResource("1_rijtb")
 ray_collision_mask = 1

@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export var sight_area: Area2D
 @export var sight_line: RayCast2D
 @export var nav_agent: NavigationAgent2D
-@export var context_map: ContextMap
+@export var context_map: Node3D
 @export var hitbox: Hitbox
 @export var cooldown_timer: Timer
 @export var anim_player: AnimationPlayer

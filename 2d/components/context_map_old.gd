@@ -1,4 +1,3 @@
-class_name ContextMap
 extends Node2D
 
 @export var vector_count: int = 12
