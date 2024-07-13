@@ -36,7 +36,6 @@ format = 2
 offset_top = 0.0
 offset_bottom = 0.0
 scale = Vector2(1, 1)
-foreshortening_correction = false
 
 [node name="SubViewport" type="SubViewport" parent="TopdownViewportContainer"]
 handle_input_locally = false
@@ -53,7 +52,7 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 current = false
 target = NodePath("../Player")
 
-[node name="FreeCamera" type="Camera3D" parent="TopdownViewportContainer/SubViewport/World"]
+[node name="FreeCam" type="Camera3D" parent="TopdownViewportContainer/SubViewport/World"]
 transform = Transform3D(1, 0, 0, 0, 0.766045, 0.642788, 0, -0.642788, 0.766044, 3.5, 6, 14)
 current = true
 script = ExtResource("7_byb0n")
