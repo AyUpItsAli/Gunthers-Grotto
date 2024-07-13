@@ -14,6 +14,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		match camera_controller:
 			Controller.PLAYER:
 				camera_controller = Controller.FREE_CAM
+				movement_controller = Controller.FREE_CAM
 			Controller.FREE_CAM:
 				camera_controller = Controller.PLAYER
 				movement_controller = Controller.PLAYER
