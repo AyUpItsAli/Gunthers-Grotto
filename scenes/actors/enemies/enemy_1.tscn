@@ -11,7 +11,7 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_1b3bu"]
 height = 1.313
-radius = 0.375
+radius = 0.313
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_25mue"]
 height = 1.313
@@ -19,7 +19,6 @@ radius = 6.0
 
 [node name="Enemy1" type="CharacterBody3D" node_paths=PackedStringArray("sight_area", "sight_line", "nav_agent", "context_map", "state_chart")]
 collision_layer = 4
-collision_mask = 5
 script = ExtResource("1_y3qj1")
 sight_area = NodePath("SightArea")
 sight_line = NodePath("SightLine")
@@ -49,6 +48,7 @@ target_position = Vector3(0, 0, 2)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
+radius = 0.4
 debug_enabled = true
 
 [node name="ContextMap" parent="." instance=ExtResource("4_kgf81")]

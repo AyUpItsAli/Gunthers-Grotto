@@ -63,6 +63,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 9)
 [node name="Enemy2" parent="TopdownViewportContainer/SubViewport/World" instance=ExtResource("8_mtv1a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 10)
 
+[node name="Enemy3" parent="TopdownViewportContainer/SubViewport/World" instance=ExtResource("8_mtv1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 10)
+
 [node name="LevelGrid" type="Node3D" parent="TopdownViewportContainer/SubViewport/World" node_paths=PackedStringArray("tile_map", "wall_container", "ground_container")]
 script = ExtResource("5_wfkya")
 tile_map = NodePath("../../../../TileMap")

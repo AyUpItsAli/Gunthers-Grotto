@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export var max_speed: float = 3
-@export var steering_force: float = 0.1
+@export var steering_force: float = 0.06
 @export_group("Nodes")
 @export var sight_area: Area3D
 @export var sight_line: RayCast3D
