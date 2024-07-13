@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bjuryeh8ettom"]
+[gd_scene load_steps=15 format=3 uid="uid://bjuryeh8ettom"]
 
 [ext_resource type="Script" path="res://scenes/world/level/level.gd" id="1_4wstg"]
 [ext_resource type="PackedScene" uid="uid://drn5n5w1fbbms" path="res://scenes/world/camera/topdown_viewport_container.tscn" id="1_n3ch6"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bjid6eef6piwu" path="res://scenes/actors/player/player.tscn" id="3_5u4i6"]
 [ext_resource type="Resource" uid="uid://g32r1uw0otsr" path="res://data/world/biomes/prototype.tres" id="3_oodk7"]
 [ext_resource type="Script" path="res://scenes/world/level/level_grid.gd" id="5_wfkya"]
+[ext_resource type="Script" path="res://scenes/dev/free_camera.gd" id="7_byb0n"]
 [ext_resource type="PackedScene" uid="uid://2id4am2unkk5" path="res://scenes/world/objects/tiles/wall_tile.tscn" id="8_bxmsy"]
 [ext_resource type="PackedScene" uid="uid://dyrbcva7pm3yp" path="res://scenes/actors/enemies/enemy_1.tscn" id="8_mtv1a"]
 [ext_resource type="PackedScene" uid="uid://bnyvc5u0xbg8l" path="res://scenes/world/objects/tiles/ground_tile.tscn" id="10_ftiiy"]
@@ -49,14 +50,13 @@ transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75
 
 [node name="PlayerCamera" parent="TopdownViewportContainer/SubViewport/World" node_paths=PackedStringArray("target") instance=ExtResource("2_dfhiy")]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 10)
+current = false
 target = NodePath("../Player")
 
-[node name="Node3D" type="Node3D" parent="TopdownViewportContainer/SubViewport/World"]
-transform = Transform3D(0.748088, 0, -0.6636, 0, 1, 0, 0.6636, 0, 0.748088, 0.12, 3.054, 11.201)
-
-[node name="Camera3D" type="Camera3D" parent="TopdownViewportContainer/SubViewport/World/Node3D"]
-transform = Transform3D(1, 0, 0, 0, 0.91212, 0.409923, 0, -0.409923, 0.91212, 0, 0, 0)
+[node name="FreeCamera" type="Camera3D" parent="TopdownViewportContainer/SubViewport/World"]
+transform = Transform3D(1, 0, 0, 0, 0.766045, 0.642788, 0, -0.642788, 0.766044, 3.5, 6, 14)
 current = true
+script = ExtResource("7_byb0n")
 
 [node name="Player" parent="TopdownViewportContainer/SubViewport/World" instance=ExtResource("3_5u4i6")]
 

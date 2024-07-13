@@ -1,8 +1,11 @@
 extends CharacterBody3D
 
+@export var max_speed: float = 3
+@export var steering_force: float = 0.1
 @export_group("Nodes")
 @export var sight_area: Area3D
 @export var sight_line: RayCast3D
+@export var nav_agent: NavigationAgent3D
 @export var state_chart: StateChart
 
 var target: CharacterBody3D
@@ -29,3 +32,19 @@ func _on_idiling_state_physics_processing(_delta: float) -> void:
 		if body is CharacterBody3D and can_see_pos(body.position):
 			target = body
 			state_chart.send_event("target_spotted")
+
+func _on_chasing_state_physics_processing(_delta: float) -> void:
+	if not target_exists():
+		state_chart.send_event("target_lost")
+	nav_agent.target_position = target.position
+	var next_pos: Vector3 = to_local(nav_agent.get_next_path_position()).normalized()
+	var target_vector := Vector3(next_pos.x, position.y, next_pos.z)
+	nav_agent.velocity = target_vector * max_speed
+	nav_agent.max_speed = max_speed
+
+func _on_nav_agent_velocity_computed(safe_velocity: Vector3) -> void:
+	velocity = velocity.lerp(safe_velocity, steering_force)
+	move_and_slide()
+
+func _on_chasing_state_exited() -> void:
+	nav_agent.velocity = Vector3.ZERO
