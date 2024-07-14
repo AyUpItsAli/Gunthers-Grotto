@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bjid6eef6piwu" path="res://scenes/actors/player/player.tscn" id="3_5u4i6"]
 [ext_resource type="Resource" uid="uid://g32r1uw0otsr" path="res://data/world/biomes/prototype.tres" id="3_oodk7"]
 [ext_resource type="Script" path="res://scenes/world/level/level_grid.gd" id="5_wfkya"]
-[ext_resource type="Script" path="res://scenes/dev/free_camera.gd" id="7_byb0n"]
+[ext_resource type="Script" path="res://scenes/dev/free_cam.gd" id="7_byb0n"]
 [ext_resource type="PackedScene" uid="uid://2id4am2unkk5" path="res://scenes/world/objects/tiles/wall_tile.tscn" id="8_bxmsy"]
 [ext_resource type="PackedScene" uid="uid://dyrbcva7pm3yp" path="res://scenes/actors/enemies/enemy_1.tscn" id="8_mtv1a"]
 [ext_resource type="PackedScene" uid="uid://bnyvc5u0xbg8l" path="res://scenes/world/objects/tiles/ground_tile.tscn" id="10_ftiiy"]
