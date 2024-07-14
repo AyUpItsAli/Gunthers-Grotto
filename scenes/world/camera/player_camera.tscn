@@ -6,6 +6,6 @@
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
 projection = 1
 current = true
-size = 10.0
-far = 75.0
+size = 20.0
+far = 150.0
 script = ExtResource("1_1xhka")

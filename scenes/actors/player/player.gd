@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-@export var max_speed: float = 5
-@export var acceleration: float = 0.5
+@export var max_speed: float = 8
+@export var acceleration: float = 1
 @export var sprite: Sprite3D
 @export var hand: Node3D
 @export var pickaxe: Node3D

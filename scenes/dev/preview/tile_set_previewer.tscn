@@ -14,4 +14,4 @@ tile_set = ExtResource("2_0fthg")
 [node name="WallTile" parent="." instance=ExtResource("2_gp1i6")]
 
 [node name="GroundTile" parent="." instance=ExtResource("4_odmjw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)

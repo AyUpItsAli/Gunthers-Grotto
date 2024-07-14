@@ -19,11 +19,14 @@ func clear_grid() -> void:
 		ground_container.remove_child(child)
 		child.queue_free()
 
+func grid_to_world_pos(grid_pos: Vector2i) -> Vector3:
+	return Vector3(grid_pos.x * Globals.TILE_SIZE_METERS, 0, grid_pos.y * Globals.TILE_SIZE_METERS)
+
 func place_wall_tile(grid_pos: Vector2i) -> void:
 	var wall_tile: WallTile = wall_tile_scene.instantiate()
 	wall_tile.tile_set = tile_set
 	wall_tile.atlas_coords = tile_map.get_cell_atlas_coords(0, grid_pos)
-	wall_tile.position = Vector3(grid_pos.x, 0, grid_pos.y)
+	wall_tile.position = grid_to_world_pos(grid_pos)
 	wall_container.add_child(wall_tile)
 	wall_tiles[grid_pos] = wall_tile
 
@@ -57,7 +60,7 @@ func place_ground_tile(grid_pos: Vector2i) -> void:
 	var ground_tile: GroundTile = ground_tile_scene.instantiate()
 	ground_tile.tile_set = tile_set
 	ground_tile.texture_index = tile_set.get_random_ground_texture_index()
-	ground_tile.position = Vector3(grid_pos.x, 0, grid_pos.y)
+	ground_tile.position = grid_to_world_pos(grid_pos)
 	ground_container.add_child(ground_tile)
 	ground_tiles[grid_pos] = ground_tile
 

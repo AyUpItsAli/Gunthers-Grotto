@@ -2,7 +2,7 @@ class_name ContextMap
 extends Node3D
 
 @export var vector_count: int = 12
-@export var ray_length: float = 1.5
+@export var ray_length: float = 2.5
 @export_flags_3d_physics var collision_mask: int
 
 var directions: Array[Vector3]

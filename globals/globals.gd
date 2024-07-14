@@ -1,6 +1,8 @@
 extends Node
 
-const TILE_SIZE: float = 16
+const PIXEL_SIZE: float = 0.125 # 1 pixel is 0.125 meters or 1/8 of a meter
+const TILE_SIZE_PIXELS: float = 16 # 1 tile is 16x16 pixels or 2x2 meters
+const TILE_SIZE_METERS: float = PIXEL_SIZE * TILE_SIZE_PIXELS
 const SEED_CHARS: String = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
 
 enum Controller { PLAYER, FREE_CAM }

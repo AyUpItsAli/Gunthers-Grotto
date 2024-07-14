@@ -1,7 +1,7 @@
 class_name FreeCam
 extends Camera3D
 
-@export var max_speed: float = 5
+@export var max_speed: float = 10
 @export var acceleration: float = 25
 @export var look_speed: float = 300
 
