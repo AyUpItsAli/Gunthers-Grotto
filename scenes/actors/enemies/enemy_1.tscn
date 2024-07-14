@@ -50,7 +50,7 @@ target_position = Vector3(0, 0, 2.5)
 path_desired_distance = 1.5
 target_desired_distance = 1.5
 avoidance_enabled = true
-radius = 0.7
+radius = 0.6
 debug_enabled = true
 
 [node name="ContextMap" parent="." instance=ExtResource("4_kgf81")]
