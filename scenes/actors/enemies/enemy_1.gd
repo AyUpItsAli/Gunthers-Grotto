@@ -1,12 +1,14 @@
 extends CharacterBody3D
 
-@export var max_speed: float = 6
+@export var max_speed: float = 3
 @export var steering_force: float = 0.05
+@export var rotation_weight: float = 0.05
 @export_group("Nodes")
 @export var sight_area: Area3D
 @export var sight_line: RayCast3D
 @export var nav_agent: NavigationAgent3D
 @export var context_map: ContextMap
+@export var hitbox: Hitbox
 @export var state_chart: StateChart
 
 var target: CharacterBody3D
@@ -34,11 +36,16 @@ func _on_idiling_state_physics_processing(_delta: float) -> void:
 			target = body
 			state_chart.send_event("target_spotted")
 
+func rotate_hitbox(target_vector: Vector3) -> void:
+	var vector := Vector2(target_vector.z, target_vector.x)
+	hitbox.rotation.y = lerp_angle(hitbox.rotation.y, vector.angle(), rotation_weight)
+
 func _on_chasing_state_physics_processing(_delta: float) -> void:
 	if not target_exists():
 		state_chart.send_event("target_lost")
 	nav_agent.target_position = target.position
 	var target_vector: Vector3 = to_local(nav_agent.get_next_path_position()).normalized()
+	rotate_hitbox(target_vector)
 	context_map.set_interests([target_vector])
 	nav_agent.velocity = context_map.get_desired_vector() * max_speed
 	nav_agent.max_speed = max_speed

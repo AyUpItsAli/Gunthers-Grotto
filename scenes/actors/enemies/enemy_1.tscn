@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dyrbcva7pm3yp"]
+[gd_scene load_steps=15 format=3 uid="uid://dyrbcva7pm3yp"]
 
 [ext_resource type="PackedScene" uid="uid://bpx0qg2ulwy52" path="res://scenes/util/world_sprite.tscn" id="1_4dnvh"]
 [ext_resource type="Script" path="res://scenes/actors/enemies/enemy_1.gd" id="1_y3qj1"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://coe1mp5rugxy1" path="res://scenes/actors/components/context_map.tscn" id="4_kgf81"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="4_shm84"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_pr6og"]
+[ext_resource type="PackedScene" uid="uid://dqv4xtlhte7ol" path="res://scenes/actors/components/hitbox.tscn" id="5_wwnsh"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_bbg1g"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_scokr"]
 
@@ -17,13 +18,25 @@ radius = 0.625
 height = 2.625
 radius = 8.0
 
-[node name="Enemy1" type="CharacterBody3D" node_paths=PackedStringArray("sight_area", "sight_line", "nav_agent", "context_map", "state_chart")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_qshow"]
+size = Vector3(1.5, 2.625, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d10gf"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.392157)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s1kbc"]
+material = SubResource("StandardMaterial3D_d10gf")
+size = Vector3(1.5, 2.625, 1.5)
+
+[node name="Enemy1" type="CharacterBody3D" node_paths=PackedStringArray("sight_area", "sight_line", "nav_agent", "context_map", "hitbox", "state_chart")]
 collision_layer = 4
 script = ExtResource("1_y3qj1")
 sight_area = NodePath("SightArea")
 sight_line = NodePath("SightLine")
 nav_agent = NodePath("NavigationAgent3D")
 context_map = NodePath("ContextMap")
+hitbox = NodePath("Hitbox")
 state_chart = NodePath("StateChart")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -55,6 +68,17 @@ debug_enabled = true
 
 [node name="ContextMap" parent="." instance=ExtResource("4_kgf81")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.656, 0)
+
+[node name="Hitbox" parent="." instance=ExtResource("5_wwnsh")]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.313, 0.625)
+shape = SubResource("BoxShape3D_qshow")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.313, 0.625)
+mesh = SubResource("BoxMesh_s1kbc")
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("4_shm84")

@@ -1,7 +1,7 @@
-class_name Hurtbox
+class_name HurtboxOld
 extends Area2D
 
-@export var health: Health
+@export var health: HealthOld
 @export var immunity_time: float
 
 @onready var immunity_timer: Timer = $ImmunityTimer
