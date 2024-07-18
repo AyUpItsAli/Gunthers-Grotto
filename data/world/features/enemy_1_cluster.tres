@@ -6,7 +6,6 @@
 [resource]
 script = ExtResource("1_uofvx")
 enemy_scene = ExtResource("1_xtaya")
-color = Color(1, 0.0627451, 0.0392157, 1)
 id = "enemy_1_cluster"
 phase = 3
 prerequisites = Array[String]([])
