@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dyrbcva7pm3yp"]
+[gd_scene load_steps=17 format=3 uid="uid://dyrbcva7pm3yp"]
 
 [ext_resource type="PackedScene" uid="uid://bpx0qg2ulwy52" path="res://scenes/util/world_sprite.tscn" id="1_4dnvh"]
 [ext_resource type="Script" path="res://scenes/actors/enemies/enemy_1.gd" id="1_y3qj1"]
@@ -29,7 +29,30 @@ albedo_color = Color(1, 0, 0, 0.392157)
 material = SubResource("StandardMaterial3D_d10gf")
 size = Vector3(1.5, 2.625, 1.5)
 
-[node name="Enemy1" type="CharacterBody3D" node_paths=PackedStringArray("sight_area", "sight_line", "nav_agent", "context_map", "hitbox", "state_chart")]
+[sub_resource type="Animation" id="Animation_27s67"]
+resource_name = "attack"
+length = 0.3
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"trigger"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xg3de"]
+_data = {
+"attack": SubResource("Animation_27s67")
+}
+
+[node name="Enemy1" type="CharacterBody3D" node_paths=PackedStringArray("sight_area", "sight_line", "nav_agent", "context_map", "hitbox", "attack_cooldown", "animation_player", "state_chart")]
 collision_layer = 4
 script = ExtResource("1_y3qj1")
 sight_area = NodePath("SightArea")
@@ -37,6 +60,8 @@ sight_line = NodePath("SightLine")
 nav_agent = NodePath("NavigationAgent3D")
 context_map = NodePath("ContextMap")
 hitbox = NodePath("Hitbox")
+attack_cooldown = NodePath("AttackCooldown")
+animation_player = NodePath("AnimationPlayer")
 state_chart = NodePath("StateChart")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -76,9 +101,19 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.313, 0.625)
 shape = SubResource("BoxShape3D_qshow")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Hitbox"]
+[node name="DebugMesh" type="MeshInstance3D" parent="Hitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.313, 0.625)
+visible = false
 mesh = SubResource("BoxMesh_s1kbc")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xg3de")
+}
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("4_shm84")
@@ -96,6 +131,12 @@ to = NodePath("../../Chasing")
 event = &"target_spotted"
 delay_in_seconds = "0.0"
 
+[node name="OnAttack" type="Node" parent="StateChart/Root/Idiling"]
+script = ExtResource("7_scokr")
+to = NodePath("../../Attacking")
+event = &"attack"
+delay_in_seconds = "0.0"
+
 [node name="Chasing" type="Node" parent="StateChart/Root"]
 script = ExtResource("6_bbg1g")
 
@@ -105,11 +146,24 @@ to = NodePath("../../Idiling")
 event = &"target_lost"
 delay_in_seconds = "0.0"
 
+[node name="OnAttack" type="Node" parent="StateChart/Root/Chasing"]
+script = ExtResource("7_scokr")
+to = NodePath("../../Attacking")
+event = &"attack"
+delay_in_seconds = "0.0"
+
 [node name="Attacking" type="Node" parent="StateChart/Root"]
 script = ExtResource("6_bbg1g")
+
+[node name="OnAttackFinished" type="Node" parent="StateChart/Root/Attacking"]
+script = ExtResource("7_scokr")
+to = NodePath("../../Idiling")
+event = &"attack_finished"
+delay_in_seconds = "0.0"
 
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_nav_agent_velocity_computed"]
 [connection signal="state_entered" from="StateChart/Root/Idiling" to="." method="_on_idiling_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Idiling" to="." method="_on_idiling_state_physics_processing"]
 [connection signal="state_exited" from="StateChart/Root/Chasing" to="." method="_on_chasing_state_exited"]
 [connection signal="state_physics_processing" from="StateChart/Root/Chasing" to="." method="_on_chasing_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Attacking" to="." method="_on_attacking_state_entered"]

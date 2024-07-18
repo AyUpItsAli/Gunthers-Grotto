@@ -9,6 +9,8 @@ extends CharacterBody3D
 @export var nav_agent: NavigationAgent3D
 @export var context_map: ContextMap
 @export var hitbox: Hitbox
+@export var attack_cooldown: Timer
+@export var animation_player: AnimationPlayer
 @export var state_chart: StateChart
 
 var target: CharacterBody3D
@@ -43,6 +45,10 @@ func rotate_hitbox(target_vector: Vector3) -> void:
 func _on_chasing_state_physics_processing(_delta: float) -> void:
 	if not target_exists():
 		state_chart.send_event("target_lost")
+		return
+	if hitbox.has_overlapping_areas() and attack_cooldown.is_stopped():
+		state_chart.send_event("attack")
+		return
 	nav_agent.target_position = target.position
 	var target_vector: Vector3 = to_local(nav_agent.get_next_path_position()).normalized()
 	rotate_hitbox(target_vector)
@@ -56,3 +62,11 @@ func _on_nav_agent_velocity_computed(safe_velocity: Vector3) -> void:
 
 func _on_chasing_state_exited() -> void:
 	nav_agent.velocity = Vector3.ZERO
+
+func _on_attacking_state_entered() -> void:
+	animation_player.play("attack")
+	$Hitbox/DebugMesh.visible = true # Debug
+	await animation_player.animation_finished
+	$Hitbox/DebugMesh.visible = false # Debug
+	state_chart.send_event("attack_finished")
+	attack_cooldown.start()
