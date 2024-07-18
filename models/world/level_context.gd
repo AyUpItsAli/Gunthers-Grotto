@@ -41,7 +41,6 @@ func get_random_empty_tile() -> Vector2i:
 		tile = get_random_tile()
 	return tile
 
-# TODO: Update this to work for the new 3d world, ie: make a 3d version of "map_to_local"
-func get_random_unoccupied_pos() -> Vector2:
+func get_random_unoccupied_pos() -> Vector3:
 	var empty_tile: Vector2i = get_random_empty_tile()
-	return tile_map.map_to_local(empty_tile)
+	return Vector3(empty_tile.x * Globals.TILE_SIZE_METERS, 0, empty_tile.y * Globals.TILE_SIZE_METERS)
