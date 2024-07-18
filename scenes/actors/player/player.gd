@@ -7,6 +7,8 @@ extends CharacterBody3D
 @export var pickaxe: Node3D
 @export var hitbox_pivot: Node3D
 
+signal died
+
 var spin: bool
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -36,3 +38,12 @@ func _physics_process(_delta: float) -> void:
 	#sprite.render_priority = 1 if hand.rotation_degrees.y > 90 and hand.rotation_degrees.y < 270 else 0
 	
 	hitbox_pivot.rotation_degrees = hand.rotation_degrees
+
+func _on_hurtbox_hit() -> void:
+	sprite.modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	sprite.modulate = Color.WHITE
+
+func _on_health_depleted() -> void:
+	died.emit()
+	queue_free()

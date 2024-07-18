@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dy7h7r4s7mp46" path="res://scenes/world/camera/player_camera.tscn" id="2_dfhiy"]
 [ext_resource type="Script" path="res://scenes/world/level/level_generator.gd" id="2_nbugp"]
 [ext_resource type="TileSet" uid="uid://dfjoplpmidgrk" path="res://data/world/tile_sets/preview_tile_set.tres" id="3_5be0p"]
-[ext_resource type="PackedScene" path="res://scenes/actors/player/player.tscn" id="3_5u4i6"]
+[ext_resource type="PackedScene" uid="uid://bittq7fw7ghr8" path="res://scenes/actors/player/player.tscn" id="3_5u4i6"]
 [ext_resource type="Resource" uid="uid://g32r1uw0otsr" path="res://data/world/biomes/prototype.tres" id="3_oodk7"]
 [ext_resource type="Script" path="res://scenes/dev/free_cam.gd" id="7_byb0n"]
 [ext_resource type="PackedScene" uid="uid://dyrbcva7pm3yp" path="res://scenes/actors/enemies/enemy_1.tscn" id="8_mtv1a"]

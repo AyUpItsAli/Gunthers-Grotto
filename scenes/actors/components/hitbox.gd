@@ -5,4 +5,5 @@ extends Area3D
 
 func trigger() -> void:
 	for area in get_overlapping_areas():
-		pass
+		if area is Hurtbox:
+			area.hurt(damage)
