@@ -50,7 +50,7 @@ func remove_wall_tile(grid_pos: Vector2i) -> void:
 	if not grid_pos in wall_tiles: return
 	
 	# Remove wall tile
-	var wall_tile: WallTile = wall_tiles[grid_pos]# as WallTile
+	var wall_tile: WallTile = wall_tiles[grid_pos]
 	wall_container.remove_child(wall_tile)
 	wall_tile.queue_free()
 	wall_tiles.erase(grid_pos)
@@ -58,15 +58,15 @@ func remove_wall_tile(grid_pos: Vector2i) -> void:
 	# Erase the tile in the tile map (this method handles updating neighbours)
 	tile_map.set_cells_terrain_connect(0, [grid_pos], 0, -1)
 	
-	# Update neighbours
+	# Update neighbour texture regions
 	for i: int in [-1, 0, 1]:
 		for j: int in [-1, 0, 1]:
 			if i == 0 and j == 0: continue
 			var neighbour_pos := grid_pos + Vector2i(i, j)
 			if not neighbour_pos in wall_tiles: continue
-			var neighbour_tile: WallTile = wall_tiles[neighbour_pos]# as WallTile
+			var neighbour_tile: WallTile = wall_tiles[neighbour_pos]
 			neighbour_tile.atlas_coords = tile_map.get_cell_atlas_coords(0, neighbour_pos)
-			neighbour_tile.update_texture_coords()
+			neighbour_tile.update_texture_region()
 	
 	# Place new ground tile in this new empty space
 	place_ground_tile(grid_pos)

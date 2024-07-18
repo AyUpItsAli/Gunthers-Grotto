@@ -25,10 +25,10 @@ func setup_tile() -> void:
 	sprite_bottom.texture = tile_set.wall_texture
 	sprite_bottom.region_rect.size = Vector2(Globals.TILE_SIZE_PIXELS, Globals.TILE_SIZE_PIXELS * tile_set.wall_height)
 	sprite_bottom.position.y = height / 2.0
-	# Texture coords
-	update_texture_coords()
+	# Texture region
+	update_texture_region()
 
-func update_texture_coords() -> void:
+func update_texture_region() -> void:
 	if not tile_set: return
 	# Top Sprite
 	sprite_top.region_rect.position.x = atlas_coords.x * Globals.TILE_SIZE_PIXELS
