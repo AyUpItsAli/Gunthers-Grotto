@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="LevelTileSet" load_steps=4 format=3 uid="uid://c5nnbx1yhkiec"]
+
+[ext_resource type="Texture2D" uid="uid://cp2osyuirpiru" path="res://data/world/tile_sets/dev_ground_tile_set.png" id="1_2prtx"]
+[ext_resource type="Script" path="res://models/world/level_tile_set.gd" id="1_lhgn6"]
+[ext_resource type="Texture2D" uid="uid://dwv0u7hdfo5r5" path="res://data/world/tile_sets/dev_walls_tile_set_2.png" id="2_4fl3s"]
+
+[resource]
+script = ExtResource("1_lhgn6")
+wall_texture = ExtResource("2_4fl3s")
+wall_height = 2
+ground_texture = ExtResource("1_2prtx")
+ground_probabilities = Array[float]([0.85, 0.05, 0.05, 0.05])

@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckfilx7kshp3h"]
-
-[ext_resource type="Script" path="res://scenes/world/dev/world_camera.gd" id="1_kasuf"]
-
-[node name="WorldCamera" type="Camera2D"]
-script = ExtResource("1_kasuf")

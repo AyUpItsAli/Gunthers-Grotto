@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="EnemyCluster" load_steps=3 format=3 uid="uid://b0e2n1lvhjw1q"]
 
-[ext_resource type="PackedScene" uid="uid://cfa6joyhm2ntb" path="res://scenes/actors/enemies/enemy_1.tscn" id="1_5jni6"]
+[ext_resource type="PackedScene" uid="uid://dyrbcva7pm3yp" path="res://scenes/actors/enemies/enemy_1.tscn" id="1_1tnwp"]
 [ext_resource type="Script" path="res://models/world/features/enemy_cluster.gd" id="1_dfex6"]
 
 [resource]
 script = ExtResource("1_dfex6")
-enemy_scene = ExtResource("1_5jni6")
+enemy_scene = ExtResource("1_1tnwp")
 color = Color(0.12549, 0.360784, 1, 1)
 id = "enemy_3_cluster"
 phase = 3

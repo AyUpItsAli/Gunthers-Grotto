@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://2id4am2unkk5"]
+
+[ext_resource type="Script" path="res://scenes/world/objects/tiles/wall_tile.gd" id="1_r884f"]
+[ext_resource type="Texture2D" uid="uid://sf3rng80yqpi" path="res://assets/square.png" id="3_6jokh"]
+[ext_resource type="PackedScene" uid="uid://bpx0qg2ulwy52" path="res://scenes/util/world_sprite.tscn" id="3_eolwl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n15it"]
+size = Vector3(2, 2, 2)
+
+[node name="WallTile" type="StaticBody3D" node_paths=PackedStringArray("collision_shape", "sprite_top", "sprite_bottom")]
+script = ExtResource("1_r884f")
+collision_shape = NodePath("CollisionShape3D")
+sprite_top = NodePath("SpriteTop")
+sprite_bottom = NodePath("SpriteBottom")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_n15it")
+
+[node name="SpriteTop" parent="." instance=ExtResource("3_eolwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+axis = 1
+texture = ExtResource("3_6jokh")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="SpriteBottom" parent="." instance=ExtResource("3_eolwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
+texture = ExtResource("3_6jokh")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
