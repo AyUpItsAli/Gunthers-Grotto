@@ -49,7 +49,7 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 target = NodePath("../Player")
 
 [node name="FreeCam" type="Camera3D" parent="TopdownViewportContainer/SubViewport/World"]
-transform = Transform3D(1, 0, 0, 0, 0.766045, 0.642788, 0, -0.642788, 0.766044, 7, 12, 28)
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422619, 0.906308, 0, 12, 28)
 script = ExtResource("7_byb0n")
 
 [node name="Player" parent="TopdownViewportContainer/SubViewport/World" instance=ExtResource("3_5u4i6")]
