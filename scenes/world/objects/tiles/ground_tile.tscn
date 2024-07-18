@@ -1,20 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnyvc5u0xbg8l"]
+[gd_scene load_steps=5 format=3 uid="uid://bnyvc5u0xbg8l"]
 
 [ext_resource type="Script" path="res://scenes/world/objects/tiles/ground_tile.gd" id="1_qcjm7"]
 [ext_resource type="PackedScene" uid="uid://bpx0qg2ulwy52" path="res://scenes/util/world_sprite.tscn" id="1_x5k4f"]
 [ext_resource type="Texture2D" uid="uid://sf3rng80yqpi" path="res://assets/square.png" id="3_t6xq3"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_nduek"]
-vertices = PackedVector3Array(-0.2, 0.2, -0.2, -0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, -0.2)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
-cell_size = 0.1
-cell_height = 0.1
-agent_radius = 0.8
-agent_max_climb = 0.2
+[sub_resource type="BoxShape3D" id="BoxShape3D_jtuqp"]
+size = Vector3(2, 1, 2)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_gncof"]
-
-[node name="GroundTile" type="Node3D" node_paths=PackedStringArray("sprite")]
+[node name="GroundTile" type="StaticBody3D" node_paths=PackedStringArray("sprite") groups=["ground_navigation_source"]]
 script = ExtResource("1_qcjm7")
 sprite = NodePath("Sprite")
 
@@ -24,10 +17,6 @@ texture = ExtResource("3_t6xq3")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-navigation_mesh = SubResource("NavigationMesh_nduek")
-
-[node name="NavMesh" type="MeshInstance3D" parent="NavigationRegion3D"]
-visible = false
-mesh = SubResource("PlaneMesh_gncof")
-skeleton = NodePath("../..")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_jtuqp")

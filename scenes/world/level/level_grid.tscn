@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://etvdhn2mri77"]
+
+[ext_resource type="Script" path="res://scenes/world/level/level_grid.gd" id="1_ug1m2"]
+[ext_resource type="PackedScene" uid="uid://2id4am2unkk5" path="res://scenes/world/objects/tiles/wall_tile.tscn" id="2_lkl1b"]
+[ext_resource type="PackedScene" uid="uid://bnyvc5u0xbg8l" path="res://scenes/world/objects/tiles/ground_tile.tscn" id="3_8fl1v"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_t5pfm"]
+sample_partition_type = 1
+geometry_parsed_geometry_type = 1
+geometry_collision_mask = 1
+geometry_source_geometry_mode = 2
+geometry_source_group_name = &"ground_navigation_source"
+agent_radius = 0.75
+
+[node name="LevelGrid" type="Node3D" node_paths=PackedStringArray("wall_container", "ground_container")]
+script = ExtResource("1_ug1m2")
+wall_tile_scene = ExtResource("2_lkl1b")
+ground_tile_scene = ExtResource("3_8fl1v")
+wall_container = NodePath("WallContainer")
+ground_container = NodePath("GroundContainer")
+
+[node name="WallContainer" type="Node3D" parent="."]
+
+[node name="GroundContainer" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_t5pfm")

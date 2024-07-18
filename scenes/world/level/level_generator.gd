@@ -145,6 +145,7 @@ func generate() -> void:
 	clear_level()
 	# Generate terrain
 	generate_terrain()
+	level_grid.bake_navigation()
 	# Apply features
 	apply_features()
 	# Notify listeners

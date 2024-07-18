@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bjuryeh8ettom"]
+[gd_scene load_steps=13 format=3 uid="uid://bjuryeh8ettom"]
 
 [ext_resource type="Script" path="res://scenes/world/level/level.gd" id="1_4wstg"]
 [ext_resource type="PackedScene" uid="uid://drn5n5w1fbbms" path="res://scenes/world/camera/topdown_viewport_container.tscn" id="1_n3ch6"]
@@ -7,11 +7,9 @@
 [ext_resource type="TileSet" uid="uid://dfjoplpmidgrk" path="res://data/world/tile_sets/preview_tile_set.tres" id="3_5be0p"]
 [ext_resource type="PackedScene" path="res://scenes/actors/player/player.tscn" id="3_5u4i6"]
 [ext_resource type="Resource" uid="uid://g32r1uw0otsr" path="res://data/world/biomes/prototype.tres" id="3_oodk7"]
-[ext_resource type="Script" path="res://scenes/world/level/level_grid.gd" id="5_wfkya"]
 [ext_resource type="Script" path="res://scenes/dev/free_cam.gd" id="7_byb0n"]
-[ext_resource type="PackedScene" uid="uid://2id4am2unkk5" path="res://scenes/world/objects/tiles/wall_tile.tscn" id="8_bxmsy"]
 [ext_resource type="PackedScene" uid="uid://dyrbcva7pm3yp" path="res://scenes/actors/enemies/enemy_1.tscn" id="8_mtv1a"]
-[ext_resource type="PackedScene" uid="uid://bnyvc5u0xbg8l" path="res://scenes/world/objects/tiles/ground_tile.tscn" id="10_ftiiy"]
+[ext_resource type="PackedScene" uid="uid://etvdhn2mri77" path="res://scenes/world/level/level_grid.tscn" id="10_3w8vp"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="12_kh5hr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6rcew"]
@@ -66,17 +64,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 20)
 [node name="Enemy3" parent="TopdownViewportContainer/SubViewport/World" instance=ExtResource("8_mtv1a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 20)
 
-[node name="LevelGrid" type="Node3D" parent="TopdownViewportContainer/SubViewport/World" node_paths=PackedStringArray("tile_map", "wall_container", "ground_container")]
-script = ExtResource("5_wfkya")
+[node name="LevelGrid" parent="TopdownViewportContainer/SubViewport/World" node_paths=PackedStringArray("tile_map") instance=ExtResource("10_3w8vp")]
 tile_map = NodePath("../../../../TileMap")
-wall_container = NodePath("WallContainer")
-ground_container = NodePath("GroundContainer")
-wall_tile_scene = ExtResource("8_bxmsy")
-ground_tile_scene = ExtResource("10_ftiiy")
-
-[node name="WallContainer" type="Node3D" parent="TopdownViewportContainer/SubViewport/World/LevelGrid"]
-
-[node name="GroundContainer" type="Node3D" parent="TopdownViewportContainer/SubViewport/World/LevelGrid"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -2,14 +2,29 @@ class_name LevelGrid
 extends Node3D
 
 @export var tile_map: TileMap
-@export var wall_container: Node3D
-@export var ground_container: Node3D
+@export_group("Scenes")
 @export var wall_tile_scene: PackedScene
 @export var ground_tile_scene: PackedScene
+@export_group("Nodes")
+@export var wall_container: Node3D
+@export var ground_container: NavigationRegion3D
 
 var tile_set: LevelTileSet
 var wall_tiles: Dictionary
 var ground_tiles: Dictionary
+
+var baking_navigation: bool
+
+func bake_navigation() -> void:
+	# If baking, wait for it to finish
+	if baking_navigation: await ground_container.bake_finished
+	# If still baking, abort
+	if baking_navigation: return
+	# Begin baking
+	ground_container.bake_navigation_mesh()
+	baking_navigation = true
+	await ground_container.bake_finished
+	baking_navigation = false
 
 func clear_grid() -> void:
 	for child in wall_container.get_children():
@@ -34,9 +49,6 @@ func place_wall_tile(grid_pos: Vector2i) -> void:
 func remove_wall_tile(grid_pos: Vector2i) -> void:
 	if not grid_pos in wall_tiles: return
 	
-	# Place new ground tile in this new empty space
-	place_ground_tile(grid_pos)
-	
 	# Remove wall tile
 	var wall_tile: WallTile = wall_tiles[grid_pos]# as WallTile
 	wall_container.remove_child(wall_tile)
@@ -55,6 +67,12 @@ func remove_wall_tile(grid_pos: Vector2i) -> void:
 			var neighbour_tile: WallTile = wall_tiles[neighbour_pos]# as WallTile
 			neighbour_tile.atlas_coords = tile_map.get_cell_atlas_coords(0, neighbour_pos)
 			neighbour_tile.update_texture_coords()
+	
+	# Place new ground tile in this new empty space
+	place_ground_tile(grid_pos)
+	
+	# Rebake navigation for new ground tile
+	bake_navigation()
 
 func place_ground_tile(grid_pos: Vector2i) -> void:
 	var ground_tile: GroundTile = ground_tile_scene.instantiate()
