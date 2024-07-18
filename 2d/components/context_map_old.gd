@@ -1,3 +1,4 @@
+class_name ContextMapOld
 extends Node2D
 
 @export var vector_count: int = 12
