@@ -9,3 +9,4 @@ enemy_scene = ExtResource("1_xtaya")
 id = "enemy_1_cluster"
 phase = 3
 prerequisites = Array[String]([])
+global = false

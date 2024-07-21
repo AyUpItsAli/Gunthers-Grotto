@@ -1,11 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjuryeh8ettom"]
+[gd_scene load_steps=10 format=3 uid="uid://bjuryeh8ettom"]
 
 [ext_resource type="Script" path="res://scenes/world/level/level.gd" id="1_4wstg"]
 [ext_resource type="PackedScene" uid="uid://drn5n5w1fbbms" path="res://scenes/world/camera/topdown_viewport_container.tscn" id="1_n3ch6"]
-[ext_resource type="PackedScene" uid="uid://dy7h7r4s7mp46" path="res://scenes/world/camera/player_camera.tscn" id="2_dfhiy"]
 [ext_resource type="Script" path="res://scenes/world/level/level_generator.gd" id="2_nbugp"]
 [ext_resource type="TileSet" uid="uid://dfjoplpmidgrk" path="res://data/world/tile_sets/preview_tile_set.tres" id="3_5be0p"]
-[ext_resource type="PackedScene" uid="uid://bittq7fw7ghr8" path="res://scenes/actors/player/player.tscn" id="3_5u4i6"]
 [ext_resource type="Resource" uid="uid://g32r1uw0otsr" path="res://data/world/biomes/prototype.tres" id="3_oodk7"]
 [ext_resource type="Script" path="res://scenes/dev/free_cam.gd" id="7_byb0n"]
 [ext_resource type="PackedScene" uid="uid://etvdhn2mri77" path="res://scenes/world/level/level_grid.tscn" id="10_3w8vp"]
@@ -44,15 +42,9 @@ render_target_update_mode = 4
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="TopdownViewportContainer/SubViewport/World"]
 transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75, 0.433013, 0, 0, 0)
 
-[node name="PlayerCamera" parent="TopdownViewportContainer/SubViewport/World" node_paths=PackedStringArray("target") instance=ExtResource("2_dfhiy")]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 24, 24)
-target = NodePath("../Player")
-
 [node name="FreeCam" type="Camera3D" parent="TopdownViewportContainer/SubViewport/World"]
-transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422619, 0.906308, 0, 12, 28)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
 script = ExtResource("7_byb0n")
-
-[node name="Player" parent="TopdownViewportContainer/SubViewport/World" instance=ExtResource("3_5u4i6")]
 
 [node name="LevelGrid" parent="TopdownViewportContainer/SubViewport/World" node_paths=PackedStringArray("tile_map") instance=ExtResource("10_3w8vp")]
 tile_map = NodePath("../../../../TileMap")

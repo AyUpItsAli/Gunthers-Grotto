@@ -118,14 +118,19 @@ func generate_terrain() -> void:
 				level_grid.place_ground_tile(grid_pos)
 			else:
 				level_grid.place_wall_tile(grid_pos)
+	level_grid.bake_navigation()
 
 func apply_features() -> void:
+	print("Applying features...")
 	var phases: Dictionary = Data.Features.construct_phases(biome.features)
 	for phase: int in phases:
-		print("Entering %s phase" % Data.Features.Phase.find_key(phase))
 		var features: Array = phases[phase]
-		print("Applying features (%s)" % features.size())
+		print("%s Phase (%s)" % [Data.Features.Phase.find_key(phase), features.size()])
+		if features.is_empty():
+			print("- None")
+			continue
 		for feature: Feature in features:
+			print("- Applying feature: %s" % feature.id)
 			feature.apply(context)
 
 func generate() -> void:
@@ -145,7 +150,6 @@ func generate() -> void:
 	clear_level()
 	# Generate terrain
 	generate_terrain()
-	level_grid.bake_navigation()
 	# Apply features
 	apply_features()
 	# Notify listeners

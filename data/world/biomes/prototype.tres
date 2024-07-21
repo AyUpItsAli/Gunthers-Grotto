@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://models/world/biome.gd" id="1_vt1te"]
 [ext_resource type="Resource" uid="uid://cjtwvrcqvbhyi" path="res://data/world/features/enemy_1_cluster.tres" id="1_yjxlt"]
-[ext_resource type="Resource" uid="uid://xon8qvl2enbf" path="res://data/world/features/enemy_2_cluster.tres" id="2_aefo4"]
-[ext_resource type="Resource" uid="uid://b0e2n1lvhjw1q" path="res://data/world/features/enemy_3_cluster.tres" id="3_fs2kb"]
+[ext_resource type="Resource" uid="uid://xon8qvl2enbf" path="res://data/world/features/enemy_2_cluster.tres" id="2_gw8sw"]
+[ext_resource type="Resource" uid="uid://b0e2n1lvhjw1q" path="res://data/world/features/enemy_3_cluster.tres" id="3_433qj"]
 [ext_resource type="Resource" uid="uid://c5nnbx1yhkiec" path="res://data/world/tile_sets/dev_walls_tile_set_2.tres" id="5_m1pgs"]
 
 [resource]
@@ -20,4 +20,4 @@ noise_ping_pong_strength = 1.0
 noise_threshold = 0.83
 noise_edge_width = 10
 tile_set = ExtResource("5_m1pgs")
-features = Array[Resource("res://models/world/features/feature.gd")]([ExtResource("1_yjxlt"), ExtResource("2_aefo4"), ExtResource("3_fs2kb")])
+features = Array[Resource("res://models/world/features/feature.gd")]([ExtResource("1_yjxlt"), ExtResource("2_gw8sw"), ExtResource("3_433qj")])

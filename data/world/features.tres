@@ -7,4 +7,4 @@ script = ExtResource("1_ll3al")
 base_folder = "res://data/world/features"
 includes = Array[String](["**.tres"])
 excludes = Array[String]([])
-paths = Array[String](["res://data/world/features/enemy_1_cluster.tres", "res://data/world/features/enemy_2_cluster.tres", "res://data/world/features/enemy_3_cluster.tres"])
+paths = Array[String](["res://data/world/features/enemy_1_cluster.tres", "res://data/world/features/enemy_2_cluster.tres", "res://data/world/features/enemy_3_cluster.tres", "res://data/world/features/global/player.tres"])
