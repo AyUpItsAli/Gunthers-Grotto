@@ -3,9 +3,7 @@ extends CharacterBody3D
 @export var max_speed: float = 8
 @export var acceleration: float = 1
 @export var sprite: Sprite3D
-@export var hand: Node3D
-@export var pickaxe: Node3D
-@export var hitbox_pivot: Node3D
+@export var hand: Hand
 
 signal died
 
@@ -24,20 +22,10 @@ func _physics_process(_delta: float) -> void:
 		move_and_slide()
 	
 	# Rotate hand
-	if hand.rotation_degrees.y >= 360:
-		hand.rotation_degrees.y = 0
+	if hand.angle >= 360:
+		hand.angle = 0
 	elif spin:
-		hand.rotation_degrees.y = move_toward(hand.rotation_degrees.y, 360, 0.5)
-	
-	# Rotate the pickaxe to match the motion of the hand rotation
-	#pickaxe.rotation_degrees.y = -hand.rotation_degrees.y
-	#pickaxe.rotation_degrees.z = hand.rotation_degrees.y - 90 - 45
-	
-	# Render player sprite above pickaxe sprite if hand is behind player
-	# This is a work around for a bug todo with how Godot renders transparent meshes
-	#sprite.render_priority = 1 if hand.rotation_degrees.y > 90 and hand.rotation_degrees.y < 270 else 0
-	
-	hitbox_pivot.rotation_degrees = hand.rotation_degrees
+		hand.angle = move_toward(hand.angle, 360, 1)
 
 func _on_hurtbox_hit() -> void:
 	sprite.modulate = Color.RED
