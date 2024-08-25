@@ -13,6 +13,8 @@ sprite = NodePath("Sprite")
 
 [node name="Sprite" parent="." instance=ExtResource("1_x5k4f")]
 axis = 1
+alpha_cut = 0
+render_priority = -1
 texture = ExtResource("3_t6xq3")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)

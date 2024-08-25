@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://scenes/actors/player/player.gd" id="1_lcjhu"]
 [ext_resource type="Texture2D" uid="uid://cvr650km2enip" path="res://assets/player.png" id="1_qy7ny"]
 [ext_resource type="PackedScene" uid="uid://bpx0qg2ulwy52" path="res://scenes/util/world_sprite.tscn" id="2_ingga"]
-[ext_resource type="Texture2D" uid="uid://d3rabqc1eau5b" path="res://assets/Pickaxe.png" id="3_uvcs0"]
 [ext_resource type="PackedScene" uid="uid://co3nui0h56ovd" path="res://scenes/actors/components/health.tscn" id="5_y502d"]
 [ext_resource type="Script" path="res://scenes/actors/player/hand.gd" id="6_hhekh"]
 [ext_resource type="PackedScene" uid="uid://c3iiykxi1d7vb" path="res://scenes/actors/components/hurtbox.tscn" id="6_kpfqi"]
+[ext_resource type="Texture2D" uid="uid://d3rabqc1eau5b" path="res://assets/pickaxe.png" id="7_mulqr"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wbprq"]
 radius = 0.75
@@ -48,19 +48,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_piugs")
 
 [node name="Hand" type="Node3D" parent="." node_paths=PackedStringArray("pickaxe", "pickaxe_sprite", "hitbox_pivot")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.375, 0.75)
 script = ExtResource("6_hhekh")
 pickaxe = NodePath("Pickaxe")
 pickaxe_sprite = NodePath("Pickaxe/Sprite")
 hitbox_pivot = NodePath("../HitboxPivot")
 
 [node name="Pickaxe" type="Node3D" parent="Hand"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
 
 [node name="Sprite" parent="Hand/Pickaxe" instance=ExtResource("2_ingga")]
 transform = Transform3D(-0.707107, 0.707107, 0, -0.707107, -0.707107, 0, 0, 0, 1, 0, 0, 0)
-offset = Vector2(4.5, 4.5)
-texture = ExtResource("3_uvcs0")
+offset = Vector2(9, 9)
+alpha_cut = 0
+texture = ExtResource("7_mulqr")
 
 [node name="HitboxPivot" type="Node3D" parent="."]
 visible = false
