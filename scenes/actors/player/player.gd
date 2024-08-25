@@ -4,14 +4,15 @@ extends CharacterBody3D
 @export var acceleration: float = 1
 @export var sprite: Sprite3D
 @export var hand: Hand
+@export var hitbox: Hitbox
 
 signal died
 
 var spin: bool
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("test"):
-		spin = not spin
+	if event.is_action_pressed("primary_use"):
+		hitbox.trigger()
 
 func _physics_process(_delta: float) -> void:
 	# Movement
@@ -26,6 +27,8 @@ func _physics_process(_delta: float) -> void:
 	if camera is PlayerCamera:
 		var mouse_pos: Vector3 = camera.get_mouse_pos()
 		hand.rotate_towards(mouse_pos)
+	# Rotate hitbox
+	hitbox.rotation_degrees.y = hand.angle
 
 func _on_hurtbox_hit() -> void:
 	sprite.modulate = Color.RED

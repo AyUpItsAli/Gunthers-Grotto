@@ -4,6 +4,7 @@ extends CharacterBody3D
 @export var steering_force: float = 0.1
 @export var rotation_weight: float = 0.05
 @export_group("Nodes")
+@export var sprite: Sprite3D
 @export var sight_area: Area3D
 @export var sight_line: RayCast3D
 @export var nav_agent: NavigationAgent3D
@@ -65,8 +66,14 @@ func _on_chasing_state_exited() -> void:
 
 func _on_attacking_state_entered() -> void:
 	animation_player.play("attack")
-	$Hitbox/DebugMesh.visible = true # Debug
 	await animation_player.animation_finished
-	$Hitbox/DebugMesh.visible = false # Debug
 	state_chart.send_event("attack_finished")
 	attack_cooldown.start()
+
+func _on_hurtbox_hit() -> void:
+	sprite.modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	sprite.modulate = Color.WHITE
+
+func _on_health_depleted() -> void:
+	queue_free()

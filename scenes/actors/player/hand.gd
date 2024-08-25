@@ -22,7 +22,6 @@ extends Node3D
 @export var actor: CharacterBody3D
 @export var pickaxe: Node3D
 @export var pickaxe_sprite: Sprite3D
-@export var hitbox_pivot: Node3D
 
 func _ready() -> void:
 	update_positions()
@@ -42,8 +41,6 @@ func update_rotation() -> void:
 	# Rotate pickaxe to match hand rotation
 	pickaxe.rotation_degrees.y = -angle
 	pickaxe.rotation_degrees.z = angle
-	# Rotate hitbox
-	hitbox_pivot.rotation_degrees.y = angle
 
 func rotate_towards(target_pos: Vector3) -> void:
 	var direction: Vector3 = actor.to_local(Vector3(target_pos.x, 0, target_pos.z))
