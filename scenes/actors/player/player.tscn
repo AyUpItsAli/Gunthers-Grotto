@@ -47,9 +47,10 @@ immunity_time = 1.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_piugs")
 
-[node name="Hand" type="Node3D" parent="." node_paths=PackedStringArray("pickaxe", "pickaxe_sprite", "hitbox_pivot")]
+[node name="Hand" type="Node3D" parent="." node_paths=PackedStringArray("actor", "pickaxe", "pickaxe_sprite", "hitbox_pivot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.375, 0.75)
 script = ExtResource("6_hhekh")
+actor = NodePath("..")
 pickaxe = NodePath("Pickaxe")
 pickaxe_sprite = NodePath("Pickaxe/Sprite")
 hitbox_pivot = NodePath("../HitboxPivot")

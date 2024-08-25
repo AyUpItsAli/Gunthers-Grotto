@@ -22,10 +22,10 @@ func _physics_process(_delta: float) -> void:
 		move_and_slide()
 	
 	# Rotate hand
-	if hand.angle >= 360:
-		hand.angle = 0
-	elif spin:
-		hand.angle = move_toward(hand.angle, 360, 1)
+	var camera: Camera3D = get_viewport().get_camera_3d()
+	if camera is PlayerCamera:
+		var mouse_pos: Vector3 = camera.get_mouse_pos()
+		hand.rotate_towards(mouse_pos)
 
 func _on_hurtbox_hit() -> void:
 	sprite.modulate = Color.RED
