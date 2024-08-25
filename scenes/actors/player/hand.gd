@@ -28,7 +28,7 @@ func _ready() -> void:
 	update_positions()
 
 func update_positions() -> void:
-	#if not is_node_ready(): return
+	if not is_node_ready(): return
 	# Offset pickaxe from hand origin by distance
 	pickaxe.position.z = distance * Globals.PIXEL_SIZE
 	# Position hand origin
