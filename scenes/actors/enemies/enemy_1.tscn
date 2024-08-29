@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dyrbcva7pm3yp"]
+[gd_scene load_steps=21 format=3 uid="uid://dyrbcva7pm3yp"]
 
 [ext_resource type="PackedScene" uid="uid://bpx0qg2ulwy52" path="res://scenes/util/world_sprite.tscn" id="1_4dnvh"]
 [ext_resource type="Script" path="res://scenes/actors/enemies/enemy_1.gd" id="1_y3qj1"]
@@ -35,6 +35,9 @@ albedo_color = Color(1, 0, 0, 0.392157)
 material = SubResource("StandardMaterial3D_d10gf")
 size = Vector3(1.5, 2.625, 2)
 
+[sub_resource type="Animation" id="Animation_74b4i"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_27s67"]
 resource_name = "attack"
 length = 0.3
@@ -55,6 +58,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xg3de"]
 _data = {
+"RESET": SubResource("Animation_74b4i"),
 "attack": SubResource("Animation_27s67")
 }
 
@@ -81,12 +85,12 @@ texture = ExtResource("2_bhmwd")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("4_68x8s")
-max_health = 3
+max_health = 5
 
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("4_7aln8")]
 collision_layer = 4
 health = NodePath("../Health")
-immunity_time = 1.0
+immunity_time = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.313, 0)
@@ -123,7 +127,6 @@ shape = SubResource("BoxShape3D_qshow")
 
 [node name="DebugMesh" type="MeshInstance3D" parent="Hitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.313, 1)
-visible = false
 mesh = SubResource("BoxMesh_s1kbc")
 
 [node name="AttackCooldown" type="Timer" parent="."]

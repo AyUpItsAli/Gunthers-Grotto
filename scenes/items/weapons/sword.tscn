@@ -1,0 +1,166 @@
+[gd_scene load_steps=12 format=3 uid="uid://k2b7qah4ahvj"]
+
+[ext_resource type="Script" path="res://scenes/items/weapons/sword.gd" id="1_eytwa"]
+[ext_resource type="PackedScene" uid="uid://cdjage6dk2vii" path="res://scenes/items/components/melee_weapon_sprite_pivot.tscn" id="2_lfrw7"]
+[ext_resource type="PackedScene" uid="uid://bpx0qg2ulwy52" path="res://scenes/util/world_sprite.tscn" id="2_tb3vw"]
+[ext_resource type="Texture2D" uid="uid://c7qic40bp3u5n" path="res://assets/sword.png" id="3_1tt7n"]
+[ext_resource type="PackedScene" uid="uid://dqv4xtlhte7ol" path="res://scenes/actors/components/hitbox.tscn" id="4_cmc5l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j6mti"]
+size = Vector3(3, 2, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_25qmf"]
+transparency = 1
+albedo_color = Color(0, 1, 0, 0.392157)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hht8m"]
+material = SubResource("StandardMaterial3D_25qmf")
+size = Vector3(3, 2, 4)
+
+[sub_resource type="Animation" id="Animation_4rba8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpritePivot/SpriteParent/Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpritePivot/SpriteParent/Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -2.35619)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitboxPivot/HitboxParent/Hitbox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HitboxPivot/HitboxParent/Hitbox:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1ro6b"]
+resource_name = "attack"
+length = 0.25
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpritePivot/SpriteParent/Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-2, 0.3, 0), Vector3(0, -0.3, 0), Vector3(2, 0.3, 0), Vector3(2, 0.3, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpritePivot/SpriteParent/Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -2.35619), Vector3(0, 0, -3.22886), Vector3(0, 0, -2.35619), Vector3(0, 0, -1.48353), Vector3(0, 0, -1.48353), Vector3(0, 0, -2.35619)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitboxPivot/HitboxParent/Hitbox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-2, 0, -0.3), Vector3(0, 0, 0.3), Vector3(2, 0, -0.3), Vector3(2, 0, -0.3), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HitboxPivot/HitboxParent/Hitbox:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.872665, 0), Vector3(0, 0, 0), Vector3(0, 0.872665, 0), Vector3(0, 0.872665, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4koyg"]
+_data = {
+"RESET": SubResource("Animation_4rba8"),
+"attack": SubResource("Animation_1ro6b")
+}
+
+[node name="Sword" type="Node3D" node_paths=PackedStringArray("sprite_pivot", "hitbox_pivot", "animation_player")]
+script = ExtResource("1_eytwa")
+sprite_pivot = NodePath("SpritePivot")
+hitbox_pivot = NodePath("HitboxPivot")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="SpritePivot" parent="." instance=ExtResource("2_lfrw7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.375, 0.75)
+
+[node name="SpriteParent" type="Node3D" parent="SpritePivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
+
+[node name="Sprite" parent="SpritePivot/SpriteParent" instance=ExtResource("2_tb3vw")]
+transform = Transform3D(-0.707104, 0.70711, 0, -0.70711, -0.707104, 0, 0, 0, 1, 0, 0, 0)
+offset = Vector2(9, 9)
+alpha_cut = 0
+texture = ExtResource("3_1tt7n")
+
+[node name="HitboxPivot" type="Node3D" parent="."]
+
+[node name="HitboxParent" type="Node3D" parent="HitboxPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Hitbox" parent="HitboxPivot/HitboxParent" instance=ExtResource("4_cmc5l")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxPivot/HitboxParent/Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+shape = SubResource("BoxShape3D_j6mti")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HitboxPivot/HitboxParent/Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+mesh = SubResource("BoxMesh_hht8m")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4koyg")
+}

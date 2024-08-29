@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdjage6dk2vii"]
+
+[ext_resource type="Script" path="res://scenes/items/components/melee_weapon_sprite_pivot.gd" id="1_akkmi"]
+
+[node name="SpritePivot" type="Node3D"]
+script = ExtResource("1_akkmi")

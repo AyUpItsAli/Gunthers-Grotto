@@ -1,13 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://bittq7fw7ghr8"]
+[gd_scene load_steps=9 format=3 uid="uid://bittq7fw7ghr8"]
 
 [ext_resource type="Script" path="res://scenes/actors/player/player.gd" id="1_lcjhu"]
 [ext_resource type="Texture2D" uid="uid://cvr650km2enip" path="res://assets/player.png" id="1_qy7ny"]
 [ext_resource type="PackedScene" uid="uid://bpx0qg2ulwy52" path="res://scenes/util/world_sprite.tscn" id="2_ingga"]
 [ext_resource type="PackedScene" uid="uid://co3nui0h56ovd" path="res://scenes/actors/components/health.tscn" id="5_y502d"]
-[ext_resource type="Script" path="res://scenes/actors/player/hand.gd" id="6_hhekh"]
+[ext_resource type="PackedScene" uid="uid://bx0k0s6bttha1" path="res://scenes/items/weapons/pickaxe.tscn" id="6_k6igg"]
 [ext_resource type="PackedScene" uid="uid://c3iiykxi1d7vb" path="res://scenes/actors/components/hurtbox.tscn" id="6_kpfqi"]
-[ext_resource type="Texture2D" uid="uid://d3rabqc1eau5b" path="res://assets/pickaxe.png" id="7_mulqr"]
-[ext_resource type="PackedScene" uid="uid://dqv4xtlhte7ol" path="res://scenes/actors/components/hitbox.tscn" id="8_yfcpk"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wbprq"]
 radius = 0.75
@@ -15,23 +13,11 @@ radius = 0.75
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_piugs"]
 radius = 0.75
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ohhq1"]
-size = Vector3(2, 2, 3)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gk5np"]
-transparency = 1
-albedo_color = Color(0, 1, 0, 0.392157)
-
-[sub_resource type="BoxMesh" id="BoxMesh_3qdcq"]
-material = SubResource("StandardMaterial3D_gk5np")
-size = Vector3(2, 2, 3)
-
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("sprite", "hand", "hitbox")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("sprite")]
 collision_layer = 2
 script = ExtResource("1_lcjhu")
+max_speed = 10.0
 sprite = NodePath("Sprite")
-hand = NodePath("Hand")
-hitbox = NodePath("Hitbox")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -52,33 +38,8 @@ immunity_time = 1.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_piugs")
 
-[node name="Hand" type="Node3D" parent="." node_paths=PackedStringArray("actor", "pickaxe", "pickaxe_sprite")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.375, 0.75)
-script = ExtResource("6_hhekh")
+[node name="Pickaxe" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("6_k6igg")]
 actor = NodePath("..")
-pickaxe = NodePath("Pickaxe")
-pickaxe_sprite = NodePath("Pickaxe/Sprite")
-
-[node name="Pickaxe" type="Node3D" parent="Hand"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
-
-[node name="Sprite" parent="Hand/Pickaxe" instance=ExtResource("2_ingga")]
-transform = Transform3D(-0.707107, 0.707107, 0, -0.707107, -0.707107, 0, 0, 0, 1, 0, 0, 0)
-offset = Vector2(9, 9)
-alpha_cut = 0
-texture = ExtResource("7_mulqr")
-
-[node name="Hitbox" parent="." instance=ExtResource("8_yfcpk")]
-collision_mask = 4
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.5)
-shape = SubResource("BoxShape3D_ohhq1")
-
-[node name="DebugMesh" type="MeshInstance3D" parent="Hitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.5)
-visible = false
-mesh = SubResource("BoxMesh_3qdcq")
 
 [connection signal="depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
