@@ -3,6 +3,7 @@ extends CharacterBody3D
 @export var max_speed: float = 6
 @export var steering_force: float = 0.1
 @export var rotation_weight: float = 0.05
+@export var attack_distance: float = 1
 @export_group("Nodes")
 @export var sprite: Sprite3D
 @export var sight_area: Area3D
@@ -47,7 +48,7 @@ func _on_chasing_state_physics_processing(_delta: float) -> void:
 	if not target_exists():
 		state_chart.send_event("target_lost")
 		return
-	if hitbox.has_overlapping_areas() and attack_cooldown.is_stopped():
+	if position.distance_to(target.position) < attack_distance and attack_cooldown.is_stopped():
 		state_chart.send_event("attack")
 		return
 	nav_agent.target_position = target.position

@@ -67,6 +67,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HitboxPivot/HitboxParent/Hitbox:monitoring")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_1ro6b"]
 resource_name = "attack"
@@ -120,6 +132,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, -0.872665, 0), Vector3(0, 0, 0), Vector3(0, 0.872665, 0), Vector3(0, 0.872665, 0), Vector3(0, 0, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HitboxPivot/HitboxParent/Hitbox:monitoring")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4koyg"]
 _data = {
@@ -151,6 +175,7 @@ texture = ExtResource("3_1tt7n")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
 [node name="Hitbox" parent="HitboxPivot/HitboxParent" instance=ExtResource("4_cmc5l")]
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxPivot/HitboxParent/Hitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)

@@ -25,7 +25,7 @@ height = 2.625
 radius = 8.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qshow"]
-size = Vector3(1.5, 2.625, 2)
+size = Vector3(1.5, 2.625, 1.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d10gf"]
 transparency = 1
@@ -33,27 +33,38 @@ albedo_color = Color(1, 0, 0, 0.392157)
 
 [sub_resource type="BoxMesh" id="BoxMesh_s1kbc"]
 material = SubResource("StandardMaterial3D_d10gf")
-size = Vector3(1.5, 2.625, 2)
+size = Vector3(1.5, 2.625, 1.5)
 
 [sub_resource type="Animation" id="Animation_74b4i"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_27s67"]
 resource_name = "attack"
 length = 0.3
-tracks/0/type = "method"
+step = 0.01
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Hitbox")
+tracks/0/path = NodePath("Hitbox:monitoring")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"trigger"
-}]
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xg3de"]
@@ -90,7 +101,7 @@ max_health = 5
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("4_7aln8")]
 collision_layer = 4
 health = NodePath("../Health")
-immunity_time = 0.5
+immunity_time = 0.1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.313, 0)
@@ -120,13 +131,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.656, 0)
 
 [node name="Hitbox" parent="." instance=ExtResource("5_wwnsh")]
 collision_mask = 2
+monitoring = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.313, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.313, 0.75)
 shape = SubResource("BoxShape3D_qshow")
 
 [node name="DebugMesh" type="MeshInstance3D" parent="Hitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.313, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.313, 0.75)
+visible = false
 mesh = SubResource("BoxMesh_s1kbc")
 
 [node name="AttackCooldown" type="Timer" parent="."]

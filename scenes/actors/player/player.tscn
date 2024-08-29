@@ -38,8 +38,7 @@ immunity_time = 1.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_piugs")
 
-[node name="Pickaxe" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("6_k6igg")]
-actor = NodePath("..")
+[node name="Pickaxe" parent="." instance=ExtResource("6_k6igg")]
 
 [connection signal="depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
