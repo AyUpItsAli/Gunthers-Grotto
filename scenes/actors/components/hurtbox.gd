@@ -2,7 +2,7 @@ class_name Hurtbox
 extends Area3D
 
 @export var health: Health
-@export var immunity_time: float
+@export var immunity_time: float = 0.5
 
 @onready var immunity_timer: Timer = $ImmunityTimer
 

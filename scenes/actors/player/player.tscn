@@ -32,7 +32,6 @@ texture = ExtResource("1_qy7ny")
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("6_kpfqi")]
 collision_layer = 2
 health = NodePath("../Health")
-immunity_time = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

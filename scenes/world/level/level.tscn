@@ -12,9 +12,10 @@
 [sub_resource type="LabelSettings" id="LabelSettings_6rcew"]
 font_size = 32
 
-[node name="Level" type="Node" node_paths=PackedStringArray("level_generator")]
+[node name="Level" type="Node" node_paths=PackedStringArray("level_generator", "seed_label")]
 script = ExtResource("1_4wstg")
 level_generator = NodePath("LevelGenerator")
+seed_label = NodePath("CanvasLayer/VBoxContainer/SeedLabel")
 
 [node name="LevelGenerator" type="Node" parent="." node_paths=PackedStringArray("tile_map", "level_grid")]
 script = ExtResource("2_nbugp")
@@ -85,3 +86,5 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 32
 text = "Need Seed
 "
+
+[connection signal="level_generated" from="LevelGenerator" to="." method="_on_level_generator_level_generated"]

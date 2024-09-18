@@ -3,7 +3,7 @@ extends CharacterBody3D
 @export var max_speed: float = 6
 @export var steering_force: float = 0.1
 @export var rotation_weight: float = 0.05
-@export var attack_distance: float = 1
+@export var attack_distance: float = 1.5
 @export_group("Nodes")
 @export var sprite: Sprite3D
 @export var sight_area: Area3D
@@ -18,8 +18,7 @@ extends CharacterBody3D
 var target: CharacterBody3D
 
 func target_exists() -> bool:
-	if not target:
-		return false
+	if not target: return false
 	return not target.is_queued_for_deletion()
 
 func can_see_pos(pos: Vector3) -> bool:
